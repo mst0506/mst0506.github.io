@@ -13,24 +13,25 @@
     
     <!--- Seo Part-->
     
-    <link rel="canonical" href="http://example.com/2024/08/12/初识量化/"/>
+    <link rel="canonical" href="http://example.com/2024/09/11/pandas备忘录/"/>
     <meta name="robots" content="index,follow">
     <meta name="googlebot" content="index,follow">
     <meta name="revisit-after" content="1 days">
     
-        <meta name="description" content="前排提醒：以下内容整理自聚宽 ，感谢平台为初学者提供的帮助。 什么是量化交易策略的产生简单来讲，量化交易就是用程序来实现你的交易策略。假如Mark是一个股市新人，他的交易想法很简单，就是 123如果股票价格低于过去一段时间的平均值，就买入一些；如果股票价格高于过去一段时间的平均值，就卖出一些。  这可以称为一个想法，但是还不足够成为一个策略，因为描述不够精准，即使是不进行量化交易，也很难明确的去执">
+        <meta name="description" content="类似于Pandas&#x2F;NumPy这种工具，每个人的学习需求都不一样，如果想快速上手熟悉基本方法，那么W3Schools 上的Exercise及Tutorial是不错的选择。如果想具体了解常见的操作，那么可以去中文版的Pandas官方文档 ，熟悉之后，在书签栏备一个cheat sheet 也方便速查。 然后回到今天的主题，虽然关于Pandas的问题可以直接丢给大模型，但是面试的时候并不能用大">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2024/08/12/%E5%88%9D%E8%AF%86%E9%87%8F%E5%8C%96/index.html">
+<meta property="og:url" content="http://example.com/2024/09/11/Pandas%E5%A4%87%E5%BF%98%E5%BD%95/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前排提醒：以下内容整理自聚宽 ，感谢平台为初学者提供的帮助。 什么是量化交易策略的产生简单来讲，量化交易就是用程序来实现你的交易策略。假如Mark是一个股市新人，他的交易想法很简单，就是 123如果股票价格低于过去一段时间的平均值，就买入一些；如果股票价格高于过去一段时间的平均值，就卖出一些。  这可以称为一个想法，但是还不足够成为一个策略，因为描述不够精准，即使是不进行量化交易，也很难明确的去执">
+<meta property="og:description" content="类似于Pandas&#x2F;NumPy这种工具，每个人的学习需求都不一样，如果想快速上手熟悉基本方法，那么W3Schools 上的Exercise及Tutorial是不错的选择。如果想具体了解常见的操作，那么可以去中文版的Pandas官方文档 ，熟悉之后，在书签栏备一个cheat sheet 也方便速查。 然后回到今天的主题，虽然关于Pandas的问题可以直接丢给大模型，但是面试的时候并不能用大">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2024/png/47156231/1723450604453-0353d9ce-ab61-4649-9e7a-9228b75c3541.png#averageHue=%23fbfafa&clientId=u85f6288d-a11b-4&from=paste&height=695&id=u3f1f735c&originHeight=869&originWidth=1496&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=119358&status=done&style=none&taskId=u56903783-8d89-43e8-8d7b-713382b7487&title=&width=1196.8">
-<meta property="article:published_time" content="2024-08-12T14:19:57.019Z">
-<meta property="article:modified_time" content="2024-08-12T14:26:17.128Z">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2024/png/47156231/1725623668156-00972b48-fc99-4bde-aa19-850d48304302.png?x-oss-process=image/format,webp">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2024/png/47156231/1725690132341-b3bcf6ef-1111-4859-8224-c2736b9fcaf9.png">
+<meta property="article:published_time" content="2024-09-11T03:34:58.462Z">
+<meta property="article:modified_time" content="2024-09-11T03:35:12.066Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2024/png/47156231/1723450604453-0353d9ce-ab61-4649-9e7a-9228b75c3541.png#averageHue=%23fbfafa&clientId=u85f6288d-a11b-4&from=paste&height=695&id=u3f1f735c&originHeight=869&originWidth=1496&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=119358&status=done&style=none&taskId=u56903783-8d89-43e8-8d7b-713382b7487&title=&width=1196.8">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2024/png/47156231/1725623668156-00972b48-fc99-4bde-aa19-850d48304302.png?x-oss-process=image/format,webp">
     
     
     <!--- Icon Part-->
@@ -407,15 +408,15 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fa-regular fa-pen-fancy"></i>&nbsp;
-        <span class="desktop">2024-08-12 22:19:57</span>
-        <span class="mobile">2024-08-12 22:19:57</span>
+        <span class="desktop">2024-09-11 11:34:58</span>
+        <span class="mobile">2024-09-11 11:34:58</span>
         <span class="hover-info">Created</span>
     </span>
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-08-12 22:26:17</span>
-            <span class="mobile">2024-08-12 22:26:17</span>
+            <span class="desktop">2024-09-11 11:35:12</span>
+            <span class="mobile">2024-09-11 11:35:12</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -442,32 +443,85 @@
 
 
         <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
-            <p>前排提醒：以下内容整理自<a class="link"   target="_blank" rel="noopener" href="https://www.joinquant.com/" >聚宽 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，感谢平台为初学者提供的帮助。</p>
-<h1 id="什么是量化交易"><a href="#什么是量化交易" class="headerlink" title="什么是量化交易"></a>什么是量化交易</h1><h2 id="策略的产生"><a href="#策略的产生" class="headerlink" title="策略的产生"></a>策略的产生</h2><p>简单来讲，量化交易就是用程序来实现你的交易策略。假如Mark是一个股市新人，他的交易想法很简单，就是</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果股票价格低于过去一段时间的平均值，就买入一些；</span><br><span class="line">如果股票价格高于过去一段时间的平均值，就卖出一些。</span><br></pre></td></tr></table></figure></div>
+            <p>类似于Pandas&#x2F;NumPy这种工具，每个人的学习需求都不一样，如果想快速上手熟悉基本方法，那么<a class="link"   href="about:blank" >W3Schools <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>上的Exercise及Tutorial是不错的选择。如果想具体了解常见的操作，那么可以去中文版的<a class="link"   target="_blank" rel="noopener" href="https://www.pypandas.cn/" >Pandas官方文档 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，熟悉之后，在书签栏备一个<a class="link"   target="_blank" rel="noopener" href="https://pandas.pydata.org/Pandas_Cheat_Sheet.pdf" >cheat sheet <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>也方便速查。</p>
+<p>然后回到今天的主题，虽然关于Pandas的问题可以直接丢给大模型，但是面试的时候并不能用大模型，并且每次描述问题、复制粘贴、修改代码其实很麻烦，花的时间并不算少。最理想的状态也许是将大模型当作一个reference book，查询是否存在我们需要的函数及其用法。写下这个篇文章，主要是记录一些常用操作及自己在使用过程中发现的一些坑。</p>
+<h1 id="SMF7h">切片索引</h1>
+<h2 id="iWJNg">一般切片</h2>
+DataFrame的本质是将多个Series组合在一起，因此如果对DataFrame切片，<font style="color:#ED740C;">默认是按列及按标签进行索引</font>。
 
-<p>这可以称为一个想法，但是还不足够成为一个策略，因为描述不够精准，即使是不进行量化交易，也很难明确的去执行。现在Mark决定将这个想法具体化，他准备</p>
-<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果股价低于近20日平均价10%，则用全部可用资金买入；</span><br><span class="line">如果股价高于近20日平均价10%，则卖出全部所持的该股票。</span><br></pre></td></tr></table></figure></div>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line">df=pd.DataFrame(&#123;<span class="string">&#x27;one&#x27;</span>:[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>],<span class="string">&#x27;two&#x27;</span>:[<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]&#125;,index=[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>])</span><br></pre></td></tr></table></figure></div>
 
-<p>这就可以成为一个策略了，Mark可以放心的将自己的股票账户托付给他的朋友Jane，只要严格按照这个策略执行，不管是Jane与Mark，执行的结果都是一样的。当然了，这只是最简单的例子，实际交易会不断根据实际情况调整策略。比如在A股中有ST股票（Special Treatment），ST并不是特殊优待，而是特别处理，这类股票存在很大投资风险，其公司甚至有退市可能，因此如果Mark在A股交易，他可能还要跟Jane说上述策略都不涉及ST股票。</p>
-<h2 id="用程序实现策略"><a href="#用程序实现策略" class="headerlink" title="用程序实现策略"></a>用程序实现策略</h2><p>总之，Mark有了一个明确可执行的策略，他可以通过程序来实现这个交易策略。</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">init</span>():</span><br><span class="line">	stock_list=[<span class="string">&#x27;10001.AABB&#x27;</span>,<span class="string">&#x27;10002.AABC&#x27;</span>]</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">work</span>():</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> stock_list:</span><br><span class="line">		close_price = price[i].close();</span><br><span class="line">		average_price = price[i].mavg(<span class="number">20</span>);</span><br><span class="line">		cash = portfolio.cash();</span><br><span class="line">		<span class="keyword">if</span> close_price &gt; average_price :</span><br><span class="line">			order(i,cash)</span><br><span class="line">		<span class="keyword">elif</span> close_price &lt; average_price :</span><br><span class="line">			order(i,<span class="number">0</span>)</span><br></pre></td></tr></table></figure></div>
-<p>你可能看不懂这个程序，<del>因为这是我瞎写的</del>。在实际的量化交易程序中，会定义若干个类，包含了很多个函数，用于调用接口&#x2F;数据计算&#x2F;执行交易等等，在交易函数中，就可能是像这样调用许多封装好的函数来实现我们的策略。</p>
-<h2 id="策略的检验"><a href="#策略的检验" class="headerlink" title="策略的检验"></a>策略的检验</h2><p>众所周知，写出策略≠能赚钱，因此还需要对策略的效果进行检验。基本的方法有两种，一种是<strong>回测</strong>，即利用历史数据去执行策略，检验效果；另一种则是<strong>模拟交易</strong>，就是利用真实行情去检验策略。如果感觉自己的策略可以稳定盈利，就可以考虑实盘交易，用真金白银去接受市场的考验了。</p>
-<h1 id="一个简单的例子"><a href="#一个简单的例子" class="headerlink" title="一个简单的例子"></a>一个简单的例子</h1><h2 id="交易策略的框架"><a href="#交易策略的框架" class="headerlink" title="交易策略的框架"></a>交易策略的框架</h2><p>交易策略的核心是交易，围绕交易就会产生一系列需求，比如在前面介绍的策略中，我们需要计算前20天的均值，计算均值就是需求之一，我们最好封装好一个类，实现这个方法，这样交易函数就可以直接调用。此外，我们的交易也不是一次性的，会在一段时间内多次执行，因此我们一般采用“初始化+周期循环”的框架。<br>举个例子，假如我们制定了一个策略，就是每天都买入100股的平安银行股票。</p>
-<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">initialize</span>(<span class="params">context</span>):</span><br><span class="line">    run_daily(period,time=<span class="string">&#x27;every_bar&#x27;</span>)</span><br><span class="line">    g.security = <span class="string">&#x27;000001.XSHE&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">period</span>(<span class="params">context</span>):</span><br><span class="line">    order(g.security, <span class="number">100</span>)</span><br></pre></td></tr></table></figure></div>
-<p>这是在聚宽的平台上运行的代码，这里的initialize函数用于初始化，context是聚宽平台自己定义的一个类型，这里不去深入研究。在函数体内部设定了我们是每日循环一次，并输入平安银行的股票代码，作为我们的持仓目标。period函数是周期循环代码，在每一个周期（这个例子为一天）中，都会执行period函数中的操作，也就是买入100股的平安银行股票。<br>平台提供了直观的用户界面来展示我们的策略运行结果，即使对于小白，看见一片绿油油的收益率，也能明白我们的策略正在大亏特亏😠。<br><img  
+<p>如果我们使用<code>df[&#39;one&#39;]</code>就会取出列名为’one’的这一列，使用<code>df[[&#39;one&#39;,&#39;two&#39;]]</code>则会一次性取出’one’与’two’这两列。那么有没有办法按行取出数据呢？答案是有的，我们使用<code>df[&#39;a&#39;:&#39;b&#39;]</code>，就可以取出’a’与’b’这两行，而如果我们只想取出’a’这一行，使用<code>df[&#39;a&#39;:&#39;a&#39;]</code>即可，这就避免了与单独取出一列的操作相冲突。</p>
+<p>前面提到默认是按“标签”进行索引，在这个例子中如果我们使用<code>df[1]</code>就会报错，但是使用<code>df[1:2]</code>就能正确运行，并且得到’b’这一行，也就是说是包含了第1行而不包含第2行，是一个左闭右开的切片，但是前面的<code>df[&#39;a&#39;:&#39;b&#39;]</code>则可以取出第0行和第1行，说明是一个左闭右闭的切片。这是非常容易混淆的地方，因此在实际操作中一般只用这种一般切片法来进行列的索引，更规范的操作是使用loc&#x2F;iloc方法。</p>
+<h2 id="nbdsr">loc/iloc方法</h2>
+除了上面提到的一些迷惑操作外，有时候我们还需要同时对行和列进行切片等，运用loc/iloc方法会更清楚。loc方法是按标签进行索引，iloc方法是按位置进行索引。
+
+<p>使用loc的话，就与上一小节中的切片方式相同，比如<code>df[&#39;a&#39;:&#39;b&#39;,&#39;one&#39;]</code>就可以取出’a’、’b’两行，’one’一列的内容。还需要注意的是，这样得到的数据类型是Series，因为我们只取出了一列，也就是一个Series.如果我们需要得到DataFrame的数据类型，<font style="color:#ED740C;">需要多加一个中括号</font>，也就是<code>df[&#39;a&#39;:&#39;b&#39;,[&#39;one&#39;]]</code>，就会得到只有一个Series列的数据框。</p>
+<p>使用iloc时，则只能按照位置进行切片，类似于我们上一节的内容，在切片时是左闭右开的，因此如果使用<code>df[0:1,0:1]</code>，得到的就是第一行第一列的内容，但有趣的是，这里我们虽然也是一列，<font style="color:#ED740C;">得到的数据类型是DataFrame而不是Series</font>，maybe这是因为虽然我们只得到了一列，但是是以范围的形式去对列进行切片的。</p>
+<h2 id="vw6Cd">条件索引</h2>
+在loc方法中我们可以使用逻辑运算符进行筛选，用`|`、`&`、`~`分别表示或、且、非。举个例子，[力扣第183题](https://leetcode.cn/problems/customers-who-never-order/?envType=study-plan-v2&envId=30-days-of-pandas&lang=pythondata)，我们需要筛选出从不订购的客户，解决代码如下
+
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">find_customers</span>(<span class="params">customers: pd.DataFrame, orders: pd.DataFrame</span>) -&gt; pd.DataFrame:</span><br><span class="line">    <span class="keyword">return</span> customers.loc[~(customers[<span class="string">&#x27;id&#x27;</span>].isin(orders.customerId)),</span><br><span class="line">    [<span class="string">&#x27;name&#x27;</span>]].rename(columns=&#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;Customers&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure></div>
+
+<p>这里面我们使用isin方法来判断customer的id是否在order数据框中，这样会筛选出符合条件的行，但每一行数据都是有很多列的属性的，我们需要再筛选出自己需要的列。rename则是将列重命名，一般是传入一个字典。</p>
+<h1 id="Ahhtp">数据处理</h1>
+在对数据框进行操作时，常用的方法是map、apply，有时也会用到applymap.他们的主要区别在于，map主要是对Series进行操作，也即单列操作；apply是对多列进行操作，通过改变参数axis，也可以实现多行操作；applymap是对所有元素进行操作。接下来以一个随机生成的股票数据为例，解释一下上述三个方法。
+
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://cdn.nlark.com/yuque/0/2024/png/47156231/1723450604453-0353d9ce-ab61-4649-9e7a-9228b75c3541.png#averageHue=%23fbfafa&clientId=u85f6288d-a11b-4&from=paste&height=695&id=u3f1f735c&originHeight=869&originWidth=1496&originalType=binary&ratio=1.25&rotation=0&showTitle=false&size=119358&status=done&style=none&taskId=u56903783-8d89-43e8-8d7b-713382b7487&title=&width=1196.8"
-                      alt="3cb4cdbcaebe9211b353e3fced5d604.png"
+                     data-src="https://cdn.nlark.com/yuque/0/2024/png/47156231/1725623668156-00972b48-fc99-4bde-aa19-850d48304302.png?x-oss-process=image/format,webp"
+                      alt="随机生成的6支股票数据"
                 ></p>
-<h2 id="常见指标说明"><a href="#常见指标说明" class="headerlink" title="常见指标说明"></a>常见指标说明</h2><p>上面的图展示了许多关于策略结果的指标，接下来说明它们都是什么含义。</p>
-<h3 id="CAPM模型"><a href="#CAPM模型" class="headerlink" title="CAPM模型"></a>CAPM模型</h3><p>首先回顾投资学中的经典模型——资本资产定价模型Capitial Asset Pricing Model. 模型的内容为$E(r_{i})&#x3D;r_{f}+\beta_{i}[E(r_m)-r_f]$，这个定价公式给出了如何计算资产的期望收益率。$r_f$表示市场的无风险利率，无风险即稳赚不赔，近似为短期国债的利率。$E(r_m)$表示市场资产组合m的期望收益率，$E(r_m)-r_f$表示市场风险溢价， 实际上，市场风险溢价可以看作是整个股市大盘的收益，只有这个值为正，我们才有去投资股票的必要。$\beta_i&#x3D;\frac{Cov(r_i,r_m)}{Var(r_m)}$表示资产i的风险系数，也可以理解为波动程度。<br>后续的阿尔法、贝塔以及夏普比率都跟这个模型有关。</p>
-<h3 id="收益"><a href="#收益" class="headerlink" title="收益"></a>收益</h3><p>策略收益(Total Returns)：就是策略执行结束后，资产的变化率。<br>策略年化收益(Total Annualized Returns)：将当前策略的收益率折现为年收益率。<br>基准收益(Benchmark Returns)：市场大盘的收益增长称为基准收益，一个好的策略的收益率至少要高于基准收益率。比如上证指数增长了50%，但是你的策略带来的收益率只有30%，这就是跑输了大盘。（什么是指数？可以简单理解为一个股票市场上股票相对价格的加权平均，反映了股票平均价格的涨跌。）</p>
-<h3 id="希腊字母"><a href="#希腊字母" class="headerlink" title="希腊字母"></a>希腊字母</h3><p>阿尔法α：<strong>超额收益</strong>，它与市场波动无关，也就是不依赖系统的上涨而获得的收益。$Alpha &#x3D; r_p-[r_f+\beta*(E(r_m)-r_f)]$<br>贝塔β：就是前面提到的<strong>风险系数</strong>，体现了与大盘的相关性。假如贝塔为1.3，那么大盘涨1%，策略就涨1.3%，贝塔为-2，那么大盘涨1%，策略就跌2%.<br>夏普比率Sharpe：描述策略在单位总风险下的超额收益。<br>$Sharpe Ratio&#x3D;\frac{r_p-r_f}{\sigma_p}$，其中分母表示策略收益的波动率。<br>所提诺比率Sortino：与夏普比率类似，只不过分母是策略下行的波动率，描述的是策略在单位下行风险下所能获得的超额收益。<br>信息比率Information Ration：描述策略在单位超额风险下的超额收益。</p>
-<h3 id="回撤"><a href="#回撤" class="headerlink" title="回撤"></a>回撤</h3><p>最大回撤：表示策略的最大亏损情况。<br>$Max\quad Drawdown&#x3D;\frac{P_x-P_y}{P_x}$<br>胜率：盈利次数占交易次数的比例。</p>
-<h1 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h1><p>从0开始介绍了量化交易的内容，虽然这节的内容非常的简单，但是阅读后应该可以对量化有一个最浅显的认识了。学习就是将不熟悉的内容转换为自己熟悉的内容，比如我在第一次参加量化比赛时，连群友讨论的API（应用程序接口）都不知道，还以为需要掌握很复杂的计算机知识，但其实在使用时才发现无非就是主办方提供函数，用于访问其封装好的数据对象。于初学者而言，很多内容还不需要深入了解背后的原理，先快速掌握其大致内容，熟悉整体，才是高效的入门方式。</p>
+<h2 id="N9nfQ">map</h2>
+通过传入函数、字典等，对series中的元素进行替换，比如我们可以传入一个匿名函数，对每天的收盘价都加1
+
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">&#x27;close&#x27;</span>]=df[<span class="string">&#x27;close].map(lambda x:x+1)</span></span><br></pre></td></tr></table></figure></div>
+
+<p>或者对于股票传入一个字典映射，将值为1和2的股票代码替换成a和b.</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[<span class="string">&#x27;stock&#x27;</span>]=df[<span class="string">&#x27;stock&#x27;</span>].<span class="built_in">map</span>(&#123;<span class="string">&#x27;1&#x27;</span>:<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;2&#x27;</span>:<span class="string">&#x27;b&#x27;</span>&#125;)</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="uf3Qc">apply</h2>
+相比于map，apply方法更加自由，可以传入自定义的函数。一个不好理解的点在于参数axis的值，一种理解方式为，<font style="color:#ED740C;">axis=0表示沿着列的方向，做逐行操作；axis=1表示沿着行的方向，做逐列操作</font>。
+
+<p>举个例子，假如我们对每天的收盘价close及交易量volume求和，是按列操作，代码为</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df[[<span class="string">&#x27;close&#x27;</span>,<span class="string">&#x27;volume&#x27;</span>]].apply(<span class="built_in">sum</span>,axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>当沿着轴<code>axis=0</code>操作时，close与volume这两列会以Series的形式作为参数，传入sum函数，最终返回的结果也是一个Series，包含了close列的和以及volume列的和。</p>
+<p>如果我们对两列的值取对数</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line">df[[<span class="string">&#x27;close&#x27;</span>,<span class="string">&#x27;volume&#x27;</span>]].apply(np.log,axis=<span class="number">0</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>同样是将每一列以Series的形式作为参数，传入apply中的函数，由于我们是取对数操作，因此每个Series传入后仍然会得到一个Series，最终的结果是将两个Series合并，得到一个DataFrame.</p>
+<p>那么如果沿axis&#x3D;1操作，是什么样的情况呢？假如我们以close*volume的值估算成交量</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">total</span>(<span class="params">series</span>):</span><br><span class="line">    <span class="keyword">return</span> series[<span class="string">&#x27;close&#x27;</span>]*series[<span class="string">&#x27;volume&#x27;</span>]</span><br><span class="line">df[<span class="string">&#x27;total&#x27;</span>] = df.apply(total, axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure></div>
+
+<p>这里我们就用到了自定义的total函数，可以看到函数的传入参数类型是Series，也就是说我们仍然是以序列的形式传入参数，只不过这里是我们将每一行作为序列，这个序列的索引就是列名。</p>
+<p>最后多提一句，在使用drop函数时有一个费解的点，想要删除某列需要令axis&#x3D;1，比如<code>df.drop([&#39;close&#39;],axis=1,inplace = True)</code>，就可以删除掉close这一列。这与前面就有了冲突，我们删除某一列是是沿着列的方向逐行删除，这里却令axis&#x3D;1。这是因为<font style="color:#ED740C;">drop函数中的axis参数是指寻找列名&#x2F;index的操作，而非删除的操作</font>。我们axis&#x3D;1其实是在逐列寻找对应的列名，找到该列名后直接删除掉整列。如果觉得这里有点抽象的话可以当作特例，或者说用的时候把axis&#x3D;0或1的情况都试一下，体验一下赛博插U盘。</p>
+<h2 id="hU4G3">applymap</h2>
+applymap比较简单，就是对DataFrame中每个元素都进行操作，这里就不多介绍了。
+
+
+
+<h1 id="AxzHH">分组操作</h1>
+<h2 id="On8C4">groupby的原理</h2>
+在处理数据框时，分组操作是重要且常见的方法，仍然以上面的股票数据为例，想要计算每支股票的收益率，就需要按股票进行分组，使用groupby方法，需要注意的是groupby后得到的对象并不是DataFrame，具体来讲，如果我们查看它的类型
+
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(df.groupby(<span class="string">&#x27;stock&#x27;</span>)))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(df.groupby(<span class="string">&#x27;stock&#x27;</span>)[<span class="string">&#x27;close&#x27;</span>]))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(df.groupby(<span class="string">&#x27;stock&#x27;</span>)[<span class="string">&#x27;close&#x27;</span>].mean()))</span><br></pre></td></tr></table></figure></div>
+
+<p>得到的结果是</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;class &#x27;pandas.core.groupby.generic.DataFrameGroupBy&#x27;&gt;</span><br><span class="line">&lt;class &#x27;pandas.core.groupby.generic.SeriesGroupBy&#x27;&gt;</span><br><span class="line">&lt;class &#x27;pandas.core.series.Series&#x27;&gt;</span><br></pre></td></tr></table></figure></div>
+
+<p>也就是说我们如果使用groupby方法，得到的其实是一个DataFrameGroupBy对象，对其切片取一列得到的是SeriesGrouBy对象，它们并不属于DataFrame&#x2F;Series，可以理解为是一种重构的数据类型。以DataFrameGroupBy为例，<font style="color:#ED740C;">它包含了按照stock分组后的若干个子DataFrame</font>，每个子DataFrame都具有相同的stock值。我们之后进行的聚合函数操作，都是对每个子数据框进行操作然后再聚合在一起的，因此groupby的分组指标就会变成索引，类似于下图这种形式</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.nlark.com/yuque/0/2024/png/47156231/1725690132341-b3bcf6ef-1111-4859-8224-c2736b9fcaf9.png"
+                     
+                ></p>
+<p>如果不想让stock成为索引，就需要使用<code>reset_index()</code>方法，这样stock与close就会成为数据框中的两个columns</p>
+<h2 id="AAHBS">常用聚合函数</h2>
+在分组后会用到聚合函数，主要有三种类型，agg、transform及apply。其中agg是最常见的聚合函数，举个例子，使用`df.groupby('stock')['close'].mean()`来求每支股票的收盘价均值，其实就等价于`df.groupby('stock')['close'].agg('mean')`。使用agg函数，得到每只股票的均值会直接返回，得到一个长度为6的序列.而如果我们使用transform函数，df.groupby('stock')['close'].transform('mean')，就会返回一个跟原数据框索引一致的序列。apply函数跟前面介绍的也并无太大区别，只是groupby之后的对象都是数据框类型，因此在自定义函数时应该传入DataFrame而非Series.
+
 
         </div>
 
@@ -478,15 +532,15 @@
         <li><strong>Title:</strong> </li>
         <li><strong>Author:</strong> Atreides</li>
         <li><strong>Created at
-                :</strong> 2024-08-12 22:19:57</li>
+                :</strong> 2024-09-11 11:34:58</li>
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-08-12 22:26:17
+                    :</strong> 2024-09-11 11:35:12
             </li>
         
         <li>
-            <strong>Link:</strong> https://mst0506.github.io/2024/08/12/初识量化/
+            <strong>Link:</strong> https://mst0506.github.io/2024/09/11/Pandas备忘录/
         </li>
         <li>
             <strong>
@@ -511,29 +565,14 @@
         
             <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
                 
-                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
-                        <a class="prev"
-                        rel="prev"
-                        href="/2024/09/11/Pandas%E5%A4%87%E5%BF%98%E5%BD%95/"
-                        >
-                            <span class="left arrow-icon flex justify-center items-center">
-                                <i class="fa-solid fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item"></span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
                         <a class="next"
                         rel="next"
-                        href="/2024/08/10/test2/"
+                        href="/2024/08/12/%E5%88%9D%E8%AF%86%E9%87%8F%E5%8C%96/"
                         >
                             <span class="title flex justify-center items-center">
-                                <span class="post-nav-title-item">test2</span>
+                                <span class="post-nav-title-item"></span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex justify-center items-center">
@@ -598,7 +637,7 @@
     <div class="post-toc">
         <div class="toc-title">On this page</div>
         <div class="page-title"></div>
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93"><span class="nav-text">什么是量化交易</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E7%9A%84%E4%BA%A7%E7%94%9F"><span class="nav-text">策略的产生</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%AE%9E%E7%8E%B0%E7%AD%96%E7%95%A5"><span class="nav-text">用程序实现策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%96%E7%95%A5%E7%9A%84%E6%A3%80%E9%AA%8C"><span class="nav-text">策略的检验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-text">一个简单的例子</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E6%98%93%E7%AD%96%E7%95%A5%E7%9A%84%E6%A1%86%E6%9E%B6"><span class="nav-text">交易策略的框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%8C%87%E6%A0%87%E8%AF%B4%E6%98%8E"><span class="nav-text">常见指标说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CAPM%E6%A8%A1%E5%9E%8B"><span class="nav-text">CAPM模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B6%E7%9B%8A"><span class="nav-text">收益</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%8C%E8%85%8A%E5%AD%97%E6%AF%8D"><span class="nav-text">希腊字母</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9E%E6%92%A4"><span class="nav-text">回撤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-text">小结</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SMF7h"><span class="nav-text">切片索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#iWJNg"><span class="nav-text">一般切片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nbdsr"><span class="nav-text">loc&#x2F;iloc方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vw6Cd"><span class="nav-text">条件索引</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ahhtp"><span class="nav-text">数据处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#N9nfQ"><span class="nav-text">map</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#uf3Qc"><span class="nav-text">apply</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hU4G3"><span class="nav-text">applymap</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AxzHH"><span class="nav-text">分组操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#On8C4"><span class="nav-text">groupby的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AAHBS"><span class="nav-text">常用聚合函数</span></a></li></ol></li></ol>
 
     </div>
 </div>
