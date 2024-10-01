@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Atreides">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/08/26/类与对象/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="基本概念成员函数(member function)在类中，我们可以定义成员函数，方便我们去读写类中的内容，执行相关的操作。这样相比于结构体中直接透过地址去操作数据，因为可以编写完备的函数，进行类型检查等，就避免了产生错误，更加安全。 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostrea">
+<meta property="og:type" content="article">
+<meta property="og:title" content="类与对象">
+<meta property="og:url" content="http://example.com/2024/08/26/%E7%B1%BB%E4%B8%8E%E5%AF%B9%E8%B1%A1/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="基本概念成员函数(member function)在类中，我们可以定义成员函数，方便我们去读写类中的内容，执行相关的操作。这样相比于结构体中直接透过地址去操作数据，因为可以编写完备的函数，进行类型检查等，就避免了产生错误，更加安全。 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostrea">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-08-25T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-01T08:44:08.876Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/R-C.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/R-C.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/R-C.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            类与对象 -
+        
+        Dune
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/rainbow.jpg","dark":"/images/rainbow.jpg"},"title":" ","subtitle":{"text":["Fake it till you make it.","Stride forward."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Dune
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Dune
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">类与对象</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/R-C.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Atreides</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-08-26</span>
+        <span class="mobile">2024-08-26</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-10-01 16:44:08</span>
+            <span class="mobile">2024-10-01 16:44:08</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/C/">C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h1><h2 id="成员函数-member-function"><a href="#成员函数-member-function" class="headerlink" title="成员函数(member function)"></a>成员函数(member function)</h2><p>在类中，我们可以定义成员函数，方便我们去读写类中的内容，执行相关的操作。这样相比于结构体中直接透过地址去操作数据，因为可以编写完备的函数，进行类型检查等，就避免了产生错误，更加安全。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="type">char</span> name[<span class="number">4</span>];</span><br><span class="line">        <span class="type">int</span> born;</span><br><span class="line">        <span class="type">bool</span> isMale;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setName</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* n)</span></span>&#123;</span><br><span class="line">            <span class="built_in">strncpy</span>(name, n, <span class="number">4</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setBorn</span><span class="params">(<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">            born = b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setMale</span><span class="params">(<span class="type">bool</span> m)</span></span>&#123;</span><br><span class="line">            isMale = m;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">printInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Name: &quot;</span> &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Born: &quot;</span> &lt;&lt; born &lt;&lt; endl;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Male: &quot;</span> &lt;&lt; (isMale ? <span class="string">&quot;Yes&quot;</span> : <span class="string">&quot;No&quot;</span>) &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Student s1;</span><br><span class="line">    s<span class="number">1.</span><span class="built_in">setName</span>(<span class="string">&quot;Mst&quot;</span>);</span><br><span class="line">    s<span class="number">1.</span><span class="built_in">setBorn</span>(<span class="number">2002</span>);</span><br><span class="line">    s<span class="number">1.</span><span class="built_in">setMale</span>(<span class="literal">true</span>);</span><br><span class="line">    s<span class="number">1.</span><span class="built_in">printInfo</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>比如在这个例子中，我们首先定义了成员变量，然后定义了成员函数，这样我们就可以直接使用成员函数来进行元素的赋值。</p>
+<h2 id="类访问说明符-access-specifiers"><a href="#类访问说明符-access-specifiers" class="headerlink" title="类访问说明符(access specifiers)"></a>类访问说明符(access specifiers)</h2><p>前面我们虽然定义了成员函数，但是仍然可以直接通过地址去修改成员变量的值，这是因为我们的访问权限是public，我们可以将成员对象设置为private，将成员函数设置成public.<strong>并且在默认情况下，如果不做声明，成员对象也是private类型。</strong></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="type">char</span> name[<span class="number">4</span>];</span><br><span class="line">        <span class="type">int</span> born;</span><br><span class="line">        <span class="type">bool</span> isMale;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setName</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* n)</span></span>&#123;</span><br><span class="line">            <span class="built_in">strncpy</span>(name, n, <span class="number">4</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setBorn</span><span class="params">(<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">            born = b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setMale</span><span class="params">(<span class="type">bool</span> m)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">printInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">void</span> <span class="title">Student::setMale</span><span class="params">(<span class="type">bool</span> m)</span></span>&#123;</span><br><span class="line">    isMale = m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Student::printInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Name: &quot;</span> &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Born: &quot;</span> &lt;&lt; born &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Male: &quot;</span> &lt;&lt; (isMale? <span class="string">&quot;Male&quot;</span> : <span class="string">&quot;Female&quot;</span>) &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p>在这里我们并没有将四个成员函数在Class内部定义，类的成员函数也是允许先声明后定义的。并且前面我们提到，类的成员函数一般会被编译器处理为内联函数(inline function)，因此setName与setBorn都是内联函数，setMale虽然不在类的内部进行定义，但是加上了inline关键字，也是内联函数，而printInfo就不是内联函数了，并且我们一般也不把涉及到打印这种的复杂函数放在类内部去定义。此外，在类的外部实现类的成员函数时，一定要加上<code>Student::</code>，否则定义的就是普通的函数，而不是类的成员函数。</p>
+<h2 id="文件结构-file-strcuture"><a href="#文件结构-file-strcuture" class="headerlink" title="文件结构(file strcuture)"></a>文件结构(file strcuture)</h2><p>在实际的操作中，我们一般将类的声明写入一个student.hpp，然后将其中具体函数的实现写在另一个student.cpp文件，再将主函数写在main.cpp，最后采用Makefile的形式进行编译链接，得到可执行文件，具体可以查看之前介绍Makefile与CMake的笔记。</p>
+<h2 id="构造函数-Constructors"><a href="#构造函数-Constructors" class="headerlink" title="构造函数(Constructors)"></a>构造函数(Constructors)</h2><p>在C++中，创建Class时，第一步是向系统申请内存，第二步是调用构造函数，构造函数的作用是初始化成员变量。在没有声明的情况下，编译器会默认生成一个空的构造函数。构造函数的名字必须与类名完全相同，并且没有返回值，也不需要在名字前面加上void声明。并且构造函数可以重载，因此可以定义多个构造函数，只需要保证其参数列表不同。还以之前的Student类为例，</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="type">char</span> name[<span class="number">4</span>];</span><br><span class="line">        <span class="type">int</span> born;</span><br><span class="line">        <span class="type">bool</span> isMale;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">Student</span>()&#123;</span><br><span class="line">            name[<span class="number">0</span>]=<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            born = <span class="number">0</span>;</span><br><span class="line">            isMale = <span class="literal">false</span>;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Constructor Person() is called.&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">Student</span>(<span class="type">const</span> <span class="type">char</span> * initname):<span class="built_in">born</span>(<span class="number">0</span>), <span class="built_in">isMale</span>(<span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="built_in">setName</span>(initname);</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Constructor Person(const char*) is called.&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">Student</span>(<span class="type">const</span> <span class="type">char</span> * initname, <span class="type">int</span> initborn, <span class="type">bool</span> initgender)&#123;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">setName</span>(initname);</span><br><span class="line">            <span class="built_in">setBorn</span>(initborn);</span><br><span class="line">            <span class="built_in">setGender</span>(initgender);</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Constructor Person(const char*, int, bool) is called.&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setName</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* n)</span></span>&#123;</span><br><span class="line">            <span class="built_in">strncpy</span>(name, n, <span class="number">4</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setBorn</span><span class="params">(<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">            born = b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setGender</span><span class="params">(<span class="type">bool</span> m)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">printInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Student::setGender</span><span class="params">(<span class="type">bool</span> m)</span></span>&#123;</span><br><span class="line">    isMale = m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Student::printInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Name: &quot;</span> &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Born: &quot;</span> &lt;&lt; born &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Male: &quot;</span> &lt;&lt; (isMale? <span class="string">&quot;Male&quot;</span> : <span class="string">&quot;Female&quot;</span>) &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Student s1;</span><br><span class="line">    s<span class="number">1.</span><span class="built_in">printInfo</span>();</span><br><span class="line"></span><br><span class="line">    <span class="function">Student <span class="title">s2</span><span class="params">(<span class="string">&quot;John&quot;</span>)</span></span>;</span><br><span class="line">    s<span class="number">2.</span><span class="built_in">printInfo</span>();</span><br><span class="line"></span><br><span class="line">    <span class="function">Student <span class="title">s3</span><span class="params">(<span class="string">&quot;Mary&quot;</span>, <span class="number">1990</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    s<span class="number">3.</span><span class="built_in">printInfo</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子中，我们编写了三个构造函数，给出了三种初始化Student对象的方式：不传入参数、仅传入名字、传入所有信息，并且在函数体中输出信息，以方便确认调用了哪个构造函数。具体来讲，第一种构造方式参数列表为空，然后在函数体内部定义了各个成员变量的默认参数，这样在创建实例时，如果不给定任何参数，其成员变量的值就会按照初始化的方式指定；第二种构造方式在参数列表传入了name的值，然后再函数体内用setName函数初始化，冒号部分的内容为成员初始化列表，表示born默认为0，isMale默认为false，这样写的好处就是不用在函数体内部换行书写，比较方便；第三种方式就是不指定任何默认值，全部接受传入的参数，调用成员函数进行初始化。然后我们在主函数中分别按照三种方式对Student对象进行初始化，得到的输出结果如下</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Constructor Person() is called.Name: 0xx.</span><br><span class="line">Born: 0</span><br><span class="line">Male: Female</span><br><span class="line">Constructor Person(const char*) is called.Name: John</span><br><span class="line">Born: 0</span><br><span class="line">Male: Female</span><br><span class="line">Constructor Person(const char*, int, bool) is called.Name: Mary�</span><br><span class="line">Born: 1990</span><br><span class="line">Male: Male</span><br></pre></td></tr></table></figure></div>
+
+<p>可以看到不同的初始化方式调用了对应的构造函数，其中Mary后面有乱码是因为我们在字符串中忘记加入休止符。</p>
+<h2 id="析构函数-Destructors"><a href="#析构函数-Destructors" class="headerlink" title="析构函数(Destructors)"></a>析构函数(Destructors)</h2><p>析构函数用于成员变量被回收时进行释放内存，没有参数列表和返回值，使用方式是在构造函数前加上波浪号~，需要注意的是析构函数并不能被重载。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="type">char</span> *name;</span><br><span class="line">        <span class="type">int</span> born;</span><br><span class="line">        <span class="type">bool</span> isMale;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">Student</span>()&#123;</span><br><span class="line">            name = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">1024</span>]&#123;<span class="number">0</span>&#125;;</span><br><span class="line">            born = <span class="number">0</span>;</span><br><span class="line">            isMale = <span class="literal">false</span>;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Constructor Student() is called.&quot;</span>&lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">Student</span>(<span class="type">const</span> <span class="type">char</span> * initname, <span class="type">int</span> initborn, <span class="type">bool</span> initgender)&#123;</span><br><span class="line"></span><br><span class="line">            name = <span class="keyword">new</span> <span class="type">char</span>[<span class="number">1024</span>];</span><br><span class="line">            <span class="built_in">setName</span>(initname);</span><br><span class="line">            <span class="built_in">setBorn</span>(initborn);</span><br><span class="line">            <span class="built_in">setGender</span>(initgender);</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Constructor Student(const char*, int, bool) is called.&quot;</span>&lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        ~<span class="built_in">Student</span>()&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Destroy&quot;</span> &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">            <span class="keyword">delete</span>[] name;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setName</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* n)</span></span>&#123;</span><br><span class="line">            <span class="built_in">strncpy</span>(name, n, <span class="number">1024</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setBorn</span><span class="params">(<span class="type">int</span> b)</span></span>&#123;</span><br><span class="line">            born = b;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">setGender</span><span class="params">(<span class="type">bool</span> m)</span></span>;</span><br><span class="line">        <span class="function"><span class="type">void</span> <span class="title">printInfo</span><span class="params">()</span></span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Student::setGender</span><span class="params">(<span class="type">bool</span> m)</span></span>&#123;</span><br><span class="line">    isMale = m;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">Student::printInfo</span><span class="params">()</span></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Name: &quot;</span> &lt;&lt; name &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Born: &quot;</span> &lt;&lt; born &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Male: &quot;</span> &lt;&lt; (isMale? <span class="string">&quot;Male&quot;</span> : <span class="string">&quot;Female&quot;</span>) &lt;&lt; endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Student s1;</span><br><span class="line">    s<span class="number">1.</span><span class="built_in">setName</span>(<span class="string">&quot;Mark&quot;</span>);</span><br><span class="line">    s<span class="number">1.</span><span class="built_in">printInfo</span>();</span><br><span class="line"></span><br><span class="line">    <span class="function">Student <span class="title">s2</span><span class="params">(<span class="string">&quot;Mary&quot;</span>, <span class="number">1990</span>, <span class="literal">true</span>)</span></span>;</span><br><span class="line">    s<span class="number">2.</span><span class="built_in">printInfo</span>();</span><br><span class="line"></span><br><span class="line">    Student *s3 = <span class="keyword">new</span> <span class="built_in">Student</span>(<span class="string">&quot;John&quot;</span>, <span class="number">1985</span>, <span class="literal">false</span>);</span><br><span class="line">    s3-&gt;<span class="built_in">printInfo</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> s3;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>还是使用前面定义的Student类，由于析构函数不能重载，而且在这个例子中我们也只需要进行释放内存这一个操作，因此只需要对申请的name数组进行delete即可，同样的加上一行输出指令，方便我们观察析构函数的调用。这段代码运行的结果是</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Constructor Student() is called.</span><br><span class="line">Name: Mark</span><br><span class="line">Born: 0</span><br><span class="line">Male: Female</span><br><span class="line">Constructor Student(const char*, int, bool) is called.</span><br><span class="line">Name: Mary</span><br><span class="line">Born: 1990</span><br><span class="line">Male: Male</span><br><span class="line">Constructor Student(const char*, int, bool) is called.</span><br><span class="line">Name: John</span><br><span class="line">Born: 1985</span><br><span class="line">Male: Female</span><br><span class="line">DestroyJohn</span><br><span class="line">DestroyMary</span><br><span class="line">DestroyMark</span><br></pre></td></tr></table></figure></div>
+
+<p>我们主要关注析构的顺序，首先对于s3，我们在主函数结束前就使用delete释放了其内存，因此应该是最先析构。然后对于s1和s2，两个成员变量都是在主函数结束后结束其生命周期，并按照后进先出的顺序被析构。如果我们把s1部分的三行代码加上花括号，那么s1的生命周期就在这个花括号结束后完结，因此析构函数会在s2的构造函数执行前被调用。</p>
+<h2 id="this指针-this-pointer"><a href="#this指针-this-pointer" class="headerlink" title="this指针(this pointer)"></a>this指针(this pointer)</h2><p>首先，为什么会有this指针？还是以Student类举例，在这个类中我们不仅有成员变量，还有成员函数，那么在我们不断创建实例的过程中，每创建一次就要拷贝一次成员函数吗？根据我们前面介绍函数传参的经验，答案应该是否定的。并且如果我们在给成员函数传参时，如果参数名称就等于成员变量名称，又该怎么区分呢？这些问题都需要this指针来解决，那么什么是this指针？</p>
+<p>当你进入一个房子后，你可以看见桌子、椅子、地板等，但是你无法看到房子的全貌了。对于一个类的实例来说，你可以看到它的成员函数、成员变量，但是实例本身呢？this是一个指针，它时时刻刻指向你这个实例本身。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">setBorn</span><span class="params">(<span class="type">int</span> born)</span></span>&#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;born = born;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这样，我们在函数内部，就可以引用当前对象的指针，在也可以将函数参数直接设为成员变量的名称。</p>
+<h2 id="静态成员-static-members"><a href="#静态成员-static-members" class="headerlink" title="静态成员(static members)"></a>静态成员(static members)</h2><p>静态成员(static members)是属于类的变量，定义在类定义中，但在类外面初始化，用于在类的所有对象之间共享数据。通过类名直接访问，如 ClassName::StaticMemberVar。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Student</span>&#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">        <span class="type">static</span> <span class="type">size_t</span> count;</span><br><span class="line">        <span class="type">int</span> roll_no;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">Student</span>()&#123;</span><br><span class="line">            count++;</span><br><span class="line">        &#125;</span><br><span class="line">        ~<span class="built_in">Student</span>()&#123;</span><br><span class="line">            count--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">static</span> <span class="type">size_t</span> <span class="title">getCount</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> count;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">size_t</span> Student::count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Student s1, s2, s3;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Total number of students: &quot;</span> &lt;&lt; Student::<span class="built_in">getCount</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="comment">//动态申请一个Student对象</span></span><br><span class="line">    Student* s4 = <span class="keyword">new</span> <span class="built_in">Student</span>();<span class="comment">//加星号是因为new申请内存返回的是地址</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Total number of students: &quot;</span> &lt;&lt; Student::<span class="built_in">getCount</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">delete</span> s4;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Total number of students: &quot;</span> &lt;&lt; Student::<span class="built_in">getCount</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们定义了一个静态成员count，但是需要在类之外去初始化，然后在构建函数和析构函数中写入操作，这样就使得count能统计类中的实例数目。然后我们也定义了一个静态的成员函数，意味着它可以直接通过类名调用，而不需要创建类的实例。但需要注意静态成员函数只能访问静态成员变量和静态成员函数，不能访问非静态成员变量和非静态成员函数。运行这段代码，结果是</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Total number of students: 3</span><br><span class="line">Total number of students: 4</span><br><span class="line">Total number of students: 3</span><br></pre></td></tr></table></figure></div>
+
+<p>一开始我们创建了三个实例，调用了三次构造函数，然后count的值就是3，后面又动态申请一块内存，用于创建第四个实例，此时count变为4，后面我们手动释放掉这块内存，count就变成3。不会变成0是因为前面三个实例属于局部变量，在程序结束后会自动销毁，我们在程序结束前输出，自然还是3.</p>
+<h1 id="进阶操作"><a href="#进阶操作" class="headerlink" title="进阶操作"></a>进阶操作</h1><h2 id="操作符重载-operator-overloading"><a href="#操作符重载-operator-overloading" class="headerlink" title="操作符重载(operator overloading)"></a>操作符重载(operator overloading)</h2><p>在前面函数部分，我们介绍过函数重载，也就是同一个函数名可以对应多个不同的函数。而在创建函数模板时，我们举了一个特例化的例子，在重载add函数时，如果参数是结构体，则需要定义add函数体的内容。根据这两点，其实不难联想到，操作符可不可以重载呢？也就是对于±×÷这样的基本操作符，能否对其重载，使其可以不仅仅对基本数据类型进行操作呢？答案是肯定的。实际上，我们在之前使用过的string类型字符串的拼接时，就已经实现了加号的重载，这是我们引用了cstring头文件的结果。我们也可以在自己定义的类中实现操作符重载，接下来我们就以一个简单的MyTime类来介绍具体细节。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyTime</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> hour;</span><br><span class="line">    <span class="type">int</span> minute;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyTime</span>(<span class="type">int</span> h = <span class="number">0</span>, <span class="type">int</span> m = <span class="number">0</span>) : <span class="built_in">hour</span>(h), <span class="built_in">minute</span>(m) &#123;&#125;</span><br><span class="line">    MyTime <span class="keyword">operator</span>+(<span class="type">const</span> MyTime&amp; t) &#123;</span><br><span class="line">        MyTime sum;</span><br><span class="line">        sum.hour = <span class="keyword">this</span>-&gt;hour + t.hour;</span><br><span class="line">        sum.minute = <span class="keyword">this</span>-&gt;minute + t.minute;</span><br><span class="line">        sum.hour += sum.minute / <span class="number">60</span>;</span><br><span class="line">        sum.minute %= <span class="number">60</span>;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">    MyTime <span class="keyword">operator</span>+= (<span class="type">const</span> MyTime&amp; t) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;hour += t.hour;</span><br><span class="line">        <span class="keyword">this</span>-&gt;minute += t.minute;</span><br><span class="line">        <span class="keyword">this</span>-&gt;hour += <span class="keyword">this</span>-&gt;minute / <span class="number">60</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;minute %= <span class="number">60</span>;</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">get_time</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">to_string</span>(<span class="keyword">this</span>-&gt;hour) + <span class="string">&quot;hours and &quot;</span> + <span class="built_in">to_string</span>(<span class="keyword">this</span>-&gt;minute) + <span class="string">&quot;minutes&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">MyTime <span class="title">t1</span><span class="params">(<span class="number">10</span>, <span class="number">30</span>)</span></span>;</span><br><span class="line">    <span class="function">MyTime <span class="title">t2</span><span class="params">(<span class="number">5</span>, <span class="number">45</span>)</span></span>;</span><br><span class="line">    MyTime t3 = t1 + t2;</span><br><span class="line">    cout &lt;&lt; t<span class="number">3.</span><span class="built_in">get_time</span>() &lt;&lt; endl;</span><br><span class="line">    t1 += t2;</span><br><span class="line">    cout &lt;&lt; t<span class="number">1.</span><span class="built_in">get_time</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们来看一下这个例子，首先我们定义一个类MyTime，其成员变量也很简单，就是小时与分钟，构造函数也比较简单，就是默认为0小时0分钟，成员初始化列表包含了全部成员变量，所以函数体内为空。接下来重载操作符，首先各种操作符其实本质都是函数，因此其实是定义函数，函数头为<code>MyTime operator+(const MyTime&amp; t)</code>因为我们希望实现两个MyTime类的相加，因此返回值类型是MyTime；operator是C++内置成员函数，需要对哪个操作符进行重载，就在operator后加上这个操作符，作为函数名；我们要重载加法操作，但是参数列表只有一个t，其实是把this对象与参数对象相加；后续函数体的部分就是一些简单的换算操作。同样的，我们可以重载+&#x3D;操作符，其原理也是类似的。最后我们定义了一个get_time函数，这里的<code>const</code>表示这个成员函数不会修改对象的状态（即不会修改对象的任何成员变量）。在main函数中直接使用重载后操作符，程序输出为</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">16hours and 15minutes</span><br><span class="line">16hours and 15minutes</span><br></pre></td></tr></table></figure></div>
+
+<p>前面我们重载了操作符，实现了MyTime+MyTime，那么能否进行MyTime类型与基本数据类型的相加呢，比如MyTime+int？答案是可以的，不过仍然需要在类中声明。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MyTime <span class="keyword">operator</span>+(<span class="type">const</span> <span class="type">int</span>&amp; m)&#123;</span><br><span class="line">        MyTime sum;</span><br><span class="line">        sum.hour = <span class="keyword">this</span>-&gt;hour;</span><br><span class="line">        sum.minute = <span class="keyword">this</span>-&gt;minute + m;</span><br><span class="line">        sum.hour += sum.minute / <span class="number">60</span>;</span><br><span class="line">        sum.minute %= <span class="number">60</span>;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>比如我们定义这样一个函数，就实现了MyTime类型与int类型的加法。</p>
+<h2 id="友元函数-friend-function"><a href="#友元函数-friend-function" class="headerlink" title="友元函数(friend function)"></a>友元函数(friend function)</h2><p>前面提到，operator是C++内置成员函数，因此对于MyTime+int，比如t1+20，也可以写作t1.operator+(20)，也就是说我们使用的重载后的加号操作符在类内部是以名为operator+的成员函数存在的。所以，MyTime+int虽然可以实现，但是int+MyTime暂时是实现不了的，该如何解决呢？答案是使用友元函数(friend function)。</p>
+<p>友元函数定义在类的内部，可以访问类中的所有成员，但本身并不属于类，这也是得名friend function的原因。利用友元函数，我们可以在类中声明以下函数,这与之前定义的重载函数的区别在于是两个参数相加，而不是参数与this对象相加。对于函数的实现，我们用一种比较取巧的方法，直接返回MyTime+int的值，因为友元函数可以访问类中的所有成员，自然也可以调用前面定义过的成员函数。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">friend</span> MyTime <span class="keyword">operator</span>+(<span class="type">const</span> <span class="type">int</span>&amp; m, <span class="type">const</span> MyTime&amp; t)&#123;</span><br><span class="line">        <span class="keyword">return</span> t + m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>函数的定义也可以放在类之外，这时就不能直接返回t+m了。此外，我们也不需要在MyTime后加上双冒号<code>::</code>，因为友元函数不属于类。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">MyTime <span class="keyword">operator</span>+(<span class="type">const</span> <span class="type">int</span>&amp; m, <span class="type">const</span> MyTime&amp; t) &#123;</span><br><span class="line">    MyTime sum;</span><br><span class="line">    sum.hour = t.hour;</span><br><span class="line">    sum.minute = t.minute + m;</span><br><span class="line">    sum.hour += sum.minute / <span class="number">60</span>;</span><br><span class="line">    sum.minute %= <span class="number">60</span>;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="自定义类型的类型转换-user-defined-type-conversion"><a href="#自定义类型的类型转换-user-defined-type-conversion" class="headerlink" title="自定义类型的类型转换(user defined type conversion)"></a>自定义类型的类型转换(user defined type conversion)</h2><p>在C++中，不同的基本数据类型之间可以进行类型转换，前面提到的MyTime是我们定义的一种时间类型，接下来介绍如何实现用户自定义类型的类型转换。</p>
+<h3 id="Mytime-to-int"><a href="#Mytime-to-int" class="headerlink" title="Mytime to int"></a>Mytime to int</h3><p>将用户自定义类型转换为基本数据类型，做法是使用成员函数。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//隐式的类型转换，MyTime→int</span></span><br><span class="line"><span class="function"><span class="keyword">operator</span> <span class="title">int</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>-&gt;hour * <span class="number">60</span> + <span class="keyword">this</span>-&gt;minute;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//显式的类型转换，MyTime→float</span></span><br><span class="line"><span class="function"><span class="keyword">explicit</span> <span class="keyword">operator</span> <span class="title">float</span><span class="params">()</span> <span class="type">const</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span>-&gt;hour * <span class="number">60</span> + <span class="keyword">this</span>-&gt;minute);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们可以在类中定义以上两个成员函数，其中第一个函数是没有返回类型的，表示将MyTime类型转换为int类型；第二个函数同样没有返回类型，但比起第一个函数，多了explicit关键字，则会只允许进行显式的类型转换，如果进行隐式的类型转换就会报错。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">MyTime <span class="title">t1</span><span class="params">(<span class="number">1</span>,<span class="number">20</span>)</span></span>;</span><br><span class="line"><span class="type">int</span> minute = t1;<span class="comment">//隐式类型转换</span></span><br><span class="line"><span class="type">float</span> t2 = <span class="built_in">float</span>(t1);<span class="comment">//显式类型转换</span></span><br></pre></td></tr></table></figure></div>
+
+<p>在实际应用中，隐式的类型转换容易出错，更推荐进行显式的类型转换，因此在定义成员函数时，最好加上explicit关键字。</p>
+<h3 id="int→MyTime"><a href="#int→MyTime" class="headerlink" title="int→MyTime"></a>int→MyTime</h3><p>要想实现基本数据类型到自定义数据类型的转换，可以在类中使用构造函数。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MyTime</span>(<span class="type">int</span> m):<span class="built_in">hour</span>(<span class="number">0</span>),<span class="built_in">minute</span>(m)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;hour = m/<span class="number">60</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;minute = m%<span class="number">60</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>比如我们考虑输入的整数表示分钟，在成员初始化列表中将hour记为0，利用构造函数实现int类型转换为MyTime类型。</p>
+<p>此外，我们也可以将&#x3D;号重载，实现int类型到MyTime类型的转换。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MyTime&amp; <span class="keyword">operator</span>=(<span class="type">const</span> <span class="type">int</span>&amp; m) &#123;</span><br><span class="line">    <span class="keyword">this</span>-&gt;hour = m / <span class="number">60</span>;</span><br><span class="line">    <span class="keyword">this</span>-&gt;minute = m % <span class="number">60</span>;</span><br><span class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>但是这两种方法的使用存在区别，比如</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MyTime t2 =<span class="number">80</span>;</span><br><span class="line">Mytime t3;</span><br><span class="line">t3 = <span class="number">80</span>;</span><br></pre></td></tr></table></figure></div>
+
+<p>对于t2，我们是对其初始化，因此调用的是构造函数，是通过构造函数实现的类型转换；对于t3，我们是对其赋值，因此调用的是运算符重载的成员函数。</p>
+<h2 id="默认操作-default-operations"><a href="#默认操作-default-operations" class="headerlink" title="默认操作(default operations)"></a>默认操作(default operations)</h2><p>在C++中，如果用户不去主动指定，编译器会进行一些默认操作，以保证程序能正确运行。</p>
+<h3 id="默认构造函数-default-constructors"><a href="#默认构造函数-default-constructors" class="headerlink" title="默认构造函数(default constructors)"></a>默认构造函数(default constructors)</h3><p>前面介绍构造函数的时候就已经提到，一开始我们不知道什么是构造函数，在定义类的时候也没有写构造函数，程序也能正常运行，这是因为编译器帮我们生成了空的构造函数，这个构造函数不仅没有参数，并且函数体也是空的。如果我们定义了一个构造函数，编译器就不会生成默认的编译器。这就可能导致错误，比如</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyTime</span></span><br><span class="line">&#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">…</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="built_in">MyTime</span>(<span class="type">int</span> m)&#123;…&#125;</span><br><span class="line">&#125;</span><br><span class="line">MyTime mark;<span class="comment">//不存在相应构造函数，出错</span></span><br></pre></td></tr></table></figure></div>
+
+<p>我们定义的构造函数必须要有int参数，如果我们试图不传入任何参数，这时类中没有对应的构造函数，就会出错。</p>
+<p>此外，在定义构造函数时也要注意避免混淆，比如我们定义两个构造函数</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MyTime</span> ()&#123;……&#125;</span><br><span class="line"><span class="built_in">MyTime</span> (<span class="type">int</span> m = <span class="number">0</span>)&#123;……&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后在构造实例时仍然是不传入任何参数，这样理论上调用任何一个构造函数都符合语法规则，这就会给编译器带来混淆，导致出错。</p>
+<h3 id="默认析构函数-default-destructors"><a href="#默认析构函数-default-destructors" class="headerlink" title="默认析构函数(default destructors)"></a>默认析构函数(default destructors)</h3><p>有默认构造函数，对应就会有默认析构函数，实际上叫做隐式定义的析构函数(implicitly defined destructors)更合适。默认析构函数同样是参数列表和函数体为空，因此也不会帮我们去进行释放内存之类的操作。</p>
+<h3 id="默认复制构造函数-default-copy-constructors"><a href="#默认复制构造函数-default-copy-constructors" class="headerlink" title="默认复制构造函数(default copy constructors)"></a>默认复制构造函数(default copy constructors)</h3><p>首先，复制构造函数是构造函数的一种，顾名思义，它的作用是在创建实例时允许进行拷贝，其参数列表就是类的对象，函数体用于实现拷贝操作</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MyTime::<span class="built_in">MyTime</span>(MyTime&amp; t)&#123;…&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>有了复制构造函数，我们在进行创建实例的时候就可以直接复制已有的实例，比如</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">MyTime <span class="title">t1</span><span class="params">(<span class="number">1</span>,<span class="number">20</span>)</span></span>;</span><br><span class="line"><span class="function">MyTime <span class="title">t2</span><span class="params">(t1)</span></span>;</span><br><span class="line">MyTime t3 = t1;</span><br></pre></td></tr></table></figure></div>
+
+<p>这里面实例t2和t3的创建都是调用了复制构造函数。</p>
+<p>而默认复制构造函数，就是在用户未定义时，编译器会自动生成一个复制构造函数。与默认构造函数不同的是，默认复制构造函数的函数体不是空的，它会实现对类中所有非静态成员的拷贝。</p>
+<h3 id="默认赋值操作-default-copy-assignment"><a href="#默认赋值操作-default-copy-assignment" class="headerlink" title="默认赋值操作(default copy assignment)"></a>默认赋值操作(default copy assignment)</h3><p>前面介绍过操作符的重载，如果不进行重载，编译器也会进行默认重载，进行拷贝操作，比如</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MyTime</span>(<span class="number">1</span>,<span class="number">20</span>);</span><br><span class="line">MyTime t2 = t1;<span class="comment">// 调用默认的复制构造函数</span></span><br><span class="line">t2 = t1; <span class="comment">//调用默认的赋值操作符</span></span><br></pre></td></tr></table></figure></div>
+
+<p>类似于我们之前介绍的初始化与赋值的区别，这里两种创建方式分别调用了复制构造函数和赋值操作。</p>
+<h2 id="指针与内存管理"><a href="#指针与内存管理" class="headerlink" title="指针与内存管理"></a>指针与内存管理</h2><p>前面我们介绍过如何使用new去向堆上申请内存，使用delete去释放内存。如果只是认为在申请完内存后记得释放，就算完成了内存管理，不会发生错误，那么只能说too young too simple.下面来看一个例子</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">MyString</span> &#123;</span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="type">int</span> buf_len;</span><br><span class="line">    <span class="type">char</span>* characters;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">MyString</span>(<span class="type">int</span> buf_len = <span class="number">64</span>, <span class="type">const</span> <span class="type">char</span>* data = <span class="literal">NULL</span>) &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Constructor(int, const char*) called&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">this</span>-&gt;buf_len = buf_len;</span><br><span class="line">        <span class="keyword">this</span>-&gt;characters = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">create</span>(buf_len, data);</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">MyString</span>() &#123;</span><br><span class="line">        <span class="keyword">delete</span>[] characters;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">create</span><span class="params">(<span class="type">int</span> buf_len, <span class="type">const</span> <span class="type">char</span>* data)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;buf_len = buf_len;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>-&gt;characters!= <span class="literal">NULL</span>)&#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;characters = <span class="keyword">new</span> <span class="type">char</span>[<span class="keyword">this</span>-&gt;buf_len]&#123;&#125;;</span><br><span class="line">            <span class="keyword">if</span>(data)</span><br><span class="line">                <span class="built_in">strncpy</span>(<span class="keyword">this</span>-&gt;characters, data, <span class="keyword">this</span>-&gt;buf_len);</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">friend</span> ostream&amp; <span class="keyword">operator</span>&lt;&lt;(ostream&amp; os, <span class="type">const</span> MyString&amp; str) &#123;</span><br><span class="line">        os &lt;&lt; <span class="string">&quot;buf_len: &quot;</span> &lt;&lt; str.buf_len;</span><br><span class="line">        os &lt;&lt; <span class="string">&quot; characters: &quot;</span> &lt;&lt; <span class="built_in">static_cast</span>&lt;<span class="type">void</span>*&gt;(str.characters) &lt;&lt; endl;</span><br><span class="line">        os &lt;&lt; <span class="string">&#x27;[&#x27;</span> &lt;&lt; str.characters &lt;&lt; <span class="string">&#x27;]&#x27;</span> &lt;&lt; endl;</span><br><span class="line">        <span class="keyword">return</span> os;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们定义一个MyString类，成员对象只有两个：数组长度以及数组指针，因为我们事先不知道字符串有多长，因此采用动态内存管理，需要多少就申请多少。构造函数只有两个参数，并且有默认值，调用create函数来实现内存申请与初始化；析构函数用于释放内存。具体到create函数，首先如果字符串长度不为0，就去申请一块内存，长度为buf_len，初始化为0，赋给characters；然后如果data不为空，就把data拷贝到characters中。</p>
+<p>这里可能就有点迷糊了，再重温一下指针的内容。首先characters是char类型的指针，存储的是数组首地址，new是向计算机申请内存，返回的结果也是一个内存地址，因此可以将new的结果赋给characters。并且我们申请的是一块buf_len长度的，内容全部为空的连续内存空间，characters现在就指向这块内存空间的首地址。在strncpy中，其实我们仍然是对指针进行操作，characters和data都是指针，计算机找到各自内存地址上存储的内容，然后将前者内存地址存储的内容修改为后者内存地址上内容的拷贝。</p>
+<p>然后我们利用友元函数，去重载了输出符<code>&lt;&lt;</code>（用友元函数是因为我们不能修改iostream这个官方头文件），这样<code>&lt;&lt;</code>在遇到MyString类型时，就会输出我们所定义的那三行内容。这里面<code>static_cast&lt;void*&gt;</code>的作用是将字符串指针的类型由char转变为void，因为C++对<code>&lt;&lt;</code>进行了重载，使得直接用<code>&lt;&lt;</code>输出字符串数组会输出其内容而非地址。当然，更简单的方法是使用<code>&amp;</code>取地址符，可以达到同样的效果</p>
+<p>有了定义好的类，我们开始编写main函数</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">MyString <span class="title">str1</span><span class="params">(<span class="number">10</span>, <span class="string">&quot;Shenzhen&quot;</span>)</span></span>;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;str1: &quot;</span> &lt;&lt; str1 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        MyString str2 = str1; </span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;str2: &quot;</span> &lt;&lt; str2 &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        MyString str3;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;str3: &quot;</span> &lt;&lt; str3 &lt;&lt; endl;</span><br><span class="line">        str3 = str1;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;str3: &quot;</span> &lt;&lt; str3 &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;end of main()&quot;</span> &lt;&lt; endl; <span class="comment">// it will not be printed out</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们创建了一个实例str1，然后分别利用前面提到的复制构造函数和重载后的赋值运算符，创建str2和str3，运行这段代码，得到的结果是</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Constructor(int, char*)</span><br><span class="line">str1: buf_len = 10, characters = 0x55709de516c0 [Shenzhen]</span><br><span class="line">str2: buf_len = 10, characters = 0x55709de516c0 [Shenzhen]</span><br><span class="line">Constructor(int, char*)</span><br><span class="line">str3: buf_len = 64, characters = 0x55709de516e0 []</span><br><span class="line">str3: buf_len = 10, characters = 0x55709de516c0 [Shenzhen]</span><br><span class="line">free(): double free detected <span class="keyword">in</span> tcache 2</span><br><span class="line">Aborted</span><br></pre></td></tr></table></figure></div>
+
+<p>首先调用了构建函数创建了str1，然后输出str1的内容，显示长度为10，然后是字符串存储的地址，以及“Shenzhen”。接着调用默认复制构造函数（我们没有在函数体中写入输出相关语句的指令，所以终端没有输出相关内容）创建了str2，然后输出str2的内容，因为characters是一个指针，指针的值就是地址，因此str1的值被str2拷贝后，str2不仅长度变为10，characters也存储了相同的地址，所以指向的内容也同样是”Shenzhen”。再然后调用构建函数创建了str3，str3使用默认构造函数，所以长度显示为64而不是10，characters指向的地址也是一个新地址。将str1的值赋给str3，我们使用的是默认的赋值操作的重载，也就是将str1的值拷贝给str3，其输出内容就变得跟str1和str2完全相同。</p>
+<p>这样做的问题在于，三个实例的characters都指向了同一块内存地址，那么在程序结束了，其中一个实例将这块内存释放，后续的实例会接着释放已经被释放的内存，这就出现了double free的错误。此外，我们一开始为str3的characters申请那块长度为64个字节的内存，现在也没有指针指向它了，这就发生了内存泄漏。</p>
+<h3 id="硬拷贝（hard-copy）"><a href="#硬拷贝（hard-copy）" class="headerlink" title="硬拷贝（hard copy）"></a>硬拷贝（hard copy）</h3><p>前面问题的根源在于，多个对象指向了同一个内存。具体来讲，在创建str2和str3两个实例时，使用的是默认复制构造函数及默认赋值操作，这就导致了所有静态变量都会被拷贝，其中就包含指针变量。</p>
+<p>一种解决方法是硬拷贝，实际上，C&#x2F;C++中的硬拷贝与软拷贝类似于在Python中的深拷贝（deep copy）与浅拷贝（shallow copy）。首先回忆Python中的情况，拷贝，顾名思义就是将原对象中的值进行复制，存储到另一个地方。浅拷贝就是只拷贝第一层的父对象，深拷贝就是浅拷贝的递归，会拷贝父对象及其子对象。</p>
+<div class="highlight-container" data-rel="Python"><figure class="iseeu highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line">list1=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,[<span class="string">&#x27;a&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]]</span><br><span class="line">list2=copy.copy(list1)</span><br><span class="line">list3=copy.deepcopy(list1)</span><br><span class="line">list1.append(<span class="number">5</span>)</span><br><span class="line">list1[<span class="number">3</span>].append(<span class="string">&#x27;c&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(list1)</span><br><span class="line"><span class="built_in">print</span>(list2)</span><br><span class="line"><span class="built_in">print</span>(list3)</span><br></pre></td></tr></table></figure></div>
+
+<p>举个例子，我们在Python中定义一个列表list1，其中嵌套了有一个列表，list2是对list1的浅拷贝，list3是对list1的深拷贝。那么list2只复制了第一层，对于其中嵌套的列表进行修改，会影响到list2，list3则复制了所有层，因此对嵌套的列表进行修改，不会影响已经完成拷贝的list3。最终输出的结果如下</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[1, 2, 3, [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>], 5]</span><br><span class="line">[1, 2, 3, [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>,<span class="string">&#x27;c&#x27;</span>]]</span><br><span class="line">[1, 2, 3, [<span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>]]</span><br></pre></td></tr></table></figure></div>
+
+<p>而在C&#x2F;C++中，硬拷贝类似于深拷贝，在遇见指针时，<strong>会复制指针指向的数据，而非指针本身</strong>，这<font style="color:rgb(6, 6, 7);">可以通过自定义拷贝构造函数和赋值操作符来实现。回到我们上面的例子，我们可以对头文件进行修改，</font></p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">MyString</span>(<span class="type">int</span> buf_len = <span class="number">64</span>, <span class="type">const</span> <span class="type">char</span> * data = <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Constructor(int, char*)&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">this</span>-&gt;buf_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;characters = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">create</span>(buf_len, data);</span><br><span class="line">&#125;</span><br><span class="line">#复制构造函数</span><br><span class="line"><span class="built_in">MyString</span>(<span class="type">const</span> MyString &amp; ms)&#123;</span><br><span class="line">        std::cout &lt;&lt; <span class="string">&quot;Copy Constructor&quot;</span> &lt;&lt; std::endl;</span><br><span class="line">        <span class="keyword">this</span>-&gt;buf_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>-&gt;characters = <span class="literal">NULL</span>;</span><br><span class="line">        <span class="built_in">create</span>(ms.buf_len, ms.characters);</span><br><span class="line">&#125;</span><br><span class="line">#赋值操作符的重载</span><br><span class="line">MyString &amp; <span class="keyword">operator</span>=(<span class="type">const</span> MyString &amp; ms)&#123;</span><br><span class="line">        <span class="built_in">create</span>(ms.buf_len, ms.characters);</span><br><span class="line">        <span class="keyword">return</span> *<span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br><span class="line">~<span class="built_in">MyString</span>()</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">release</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">create</span><span class="params">(<span class="type">int</span> buf_len,  <span class="type">const</span> <span class="type">char</span> * data)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="built_in">release</span>();</span><br><span class="line">        <span class="keyword">this</span>-&gt;buf_len = buf_len;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>( <span class="keyword">this</span>-&gt;buf_len != <span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;characters = <span class="keyword">new</span> <span class="type">char</span>[<span class="keyword">this</span>-&gt;buf_len]&#123;&#125;;</span><br><span class="line">            <span class="keyword">if</span>(data)</span><br><span class="line">                <span class="built_in">strncpy</span>(<span class="keyword">this</span>-&gt;characters, data, <span class="keyword">this</span>-&gt;buf_len);</span><br><span class="line">        &#125;</span><br><span class="line">    </span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">release</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;buf_len = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>-&gt;characters)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">delete</span>[] <span class="keyword">this</span>-&gt;characters;</span><br><span class="line">            <span class="keyword">this</span>-&gt;characters = <span class="literal">NULL</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
+
+<p><font style="color:rgb(6, 6, 7);">具体来讲，我们首先是定义了复制构造函数及进行了赋值操作的重载，其实主要也就是在里面调用了create函数，但是这样就能确保是重新向操作系统申请一块内存，从而实现了复制指针深层的内容——即指针所指向的数据，而非复制指针本身。此外，我们在上面的例子中还有一个问题就是内存泄漏，因此我们定义一个release成员函数，用于释放内存，并且在每次调用create函数时都首先调用release函数，这样就确保了在从初始化str3到将str1赋值给str3时，首次申请的内存会被释放掉，阻止了内存泄漏。</font></p>
+<h3 id="软拷贝（soft-copy）"><a href="#软拷贝（soft-copy）" class="headerlink" title="软拷贝（soft copy）"></a>软拷贝（soft copy）</h3><p>硬拷贝的缺点是每次创建对象都要去申请与释放内存，比较繁琐，也可以使用软拷贝去解决这个问题，让多个对象去共享一块内存。实际上，软拷贝就是拷贝了指针本身的值，而非所指向的内容，我们前面用到的默认复制构造函数与赋值操作都是一种软拷贝。我们可以通过对类进行设计，比如进行引用计数等操作，在使用软拷贝的同时也实现了正确的内存管理。具体的操作比较复杂，就不在这里进行演示了。</p>
+<h3 id="智能指针（smart-pointers）"><a href="#智能指针（smart-pointers）" class="headerlink" title="智能指针（smart pointers）"></a>智能指针（smart pointers）</h3><p>在现代C++中提供了智能指针，可以方便我们处理上述问题，比如可以使用共享指针<code>std::shared_ptr</code>来解决我们这个例子中出现的问题，使用智能指针，我们就可以只管申请，智能指针会自动帮我们释放内存。类似的，C++中还有<code>std::unique_ptr</code>指针，具体的用法在这里不多做介绍了。</p>
+<h1 id="继承与多态"><a href="#继承与多态" class="headerlink" title="继承与多态"></a>继承与多态</h1><h2 id="子类的创建"><a href="#子类的创建" class="headerlink" title="子类的创建"></a>子类的创建</h2><p>我们可以设计一个类Base，作为我们的父类&#x2F;基类，然后再设计一个类Derived，继承自Base类，来作为我们的子类&#x2F;派生类，这就是继承的基本概念。在C++中有多层继承与多个继承，前者是指子类可以继续派生，也就是子类的子类，后者是指一个子类可以继承自多个父类。这里我们不去探讨，只讨论最简单的情况。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Base</span> &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="type">int</span> a;</span><br><span class="line">        <span class="type">int</span> b;</span><br><span class="line">    <span class="built_in">Base</span>(<span class="type">int</span> a=<span class="number">0</span>, <span class="type">int</span> b=<span class="number">0</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;a = a;</span><br><span class="line">        <span class="keyword">this</span>-&gt;b = b;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Base constructor called&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    ~<span class="built_in">Base</span>()&#123;</span><br><span class="line">        cout &lt;&lt; <span class="string">&quot;Base destructor called&quot;</span> &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">product</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> a*b;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">friend</span> std::ostream&amp; <span class="keyword">operator</span>&lt;&lt;(std::ostream&amp; os, <span class="type">const</span> Base&amp; obj)&#123;</span><br><span class="line">        os &lt;&lt; <span class="string">&quot;a = &quot;</span> &lt;&lt; obj.a &lt;&lt; <span class="string">&quot; b = &quot;</span> &lt;&lt; obj.b;</span><br><span class="line">        <span class="keyword">return</span> os;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Derived</span> : <span class="keyword">public</span> Base &#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="type">int</span> c;</span><br><span class="line">        <span class="built_in">Derived</span>(<span class="type">int</span> c):<span class="built_in">Base</span>(c<span class="number">-2</span>,c<span class="number">-1</span>),<span class="built_in">c</span>(c)&#123;</span><br><span class="line">            <span class="keyword">this</span>-&gt;a += <span class="number">3</span>;<span class="comment">// change the value of a after calling the Base constructor;use this pointer</span></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Derived constructor called&quot;</span> &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        ~<span class="built_in">Derived</span>()&#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Derived destructor called&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="type">int</span> <span class="title">product</span><span class="params">()</span></span>&#123;</span><br><span class="line">            <span class="keyword">return</span> Base::<span class="built_in">product</span>()*c;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">friend</span> std::ostream&amp; <span class="keyword">operator</span>&lt;&lt;(std::ostream&amp; os, <span class="type">const</span> Derived&amp; obj)&#123;</span><br><span class="line">            os &lt;&lt; <span class="string">&quot;c = &quot;</span> &lt;&lt; obj.c &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; <span class="built_in">static_cast</span>&lt;<span class="type">const</span> Base&amp;&gt;(obj);</span><br><span class="line">            <span class="keyword">return</span> os;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function">Base <span class="title">b</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>)</span></span>;</span><br><span class="line">        cout &lt;&lt; b &lt;&lt; endl;</span><br><span class="line">    &#125;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;-------------&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="function">Derived <span class="title">d</span><span class="params">(<span class="number">5</span>)</span></span>;</span><br><span class="line">    cout &lt;&lt; d &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Product = &quot;</span> &lt;&lt; d.<span class="built_in">product</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>还是以一段代码为例，在derive.cpp中，我们定义了一个基类Base，定义了两个整型成员变量a和b，定义了成员函数product用于计算两整数的乘积。接下来，创建了它的子类Derived，Derived增加了一个成员变量c，同样是定义了一个成员函数product用于实现三个整数的乘积。此外，我们还重载了输出运算符，用于展示两个类的成员变量的值。在main函数中，我们首先在花括号中创建一个基类，然后我们在花括号外创建一个派生类，比较一下二者在创建与销毁时的区别。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Base constructor called</span><br><span class="line">a = 1 b = 2</span><br><span class="line">Base destructor called</span><br><span class="line">-------------</span><br><span class="line">Base constructor called</span><br><span class="line">Derived constructor called</span><br><span class="line">c = 5 a = 6 b = 4</span><br><span class="line">Product = 120</span><br><span class="line">Derived destructor called</span><br><span class="line">Base destructor called</span><br></pre></td></tr></table></figure></div>
+
+<p>通过输出结果可以发现，在创建子类时，是先调用父类的构造函数，而在释放内存时，是先调用派生类的析构函数。此外，我们在子类的构造函数中，首先在成员初始化列表里将a赋值为c-2，又在函数体内部将其值+3，这样的操作也是允许的。最后调用product函数，编译器会识别为子类而非父类的product函数，这就是多态。</p>
+<h2 id="不同的继承方式"><a href="#不同的继承方式" class="headerlink" title="不同的继承方式"></a>不同的继承方式</h2><p>在介绍类的成员变量访问权限时，我们介绍了private与public两种类型，区别在于前者只允许在类的内部进行访问，后者可以在所有区域进行访问。涉及到类的继承时，还有一种访问权限是protected，这种类型的成员变量只能在类及子类中进行访问（前提是public&#x2F;protected继承），且在子类中访问时必须使用this指针。换句话说，private（只能类内访问）、protected（类内及子类访问）、public（无访问限制）的限制程度是越来越低的。</p>
+<p>实际上，继承方式也有三种，它们决定了父类的成员变量在传递给子类后具有的访问权限。比如我们上一小节的例子中使用的是public继承，特点是父类里的所有访问权限传递到子类中是不变的，比如public权限仍然是public。protected继承则是将父类中的public权限转变为protected，而其余两种权限保持不变，因此子类中所继承的成员变量只有private及protected类型。private继承最为严格，会将子类继承的所有成员变量的权限变为private，也就是说如果子类的子类是无法直接访问子类的成员变量的。</p>
+<p>需要补充的一点是，private变量无法访问并非绝对的，可以定义public的成员函数去修改private变量，这里的无法访问指的是无法直接访问。</p>
+<h2 id="虚函数"><a href="#虚函数" class="headerlink" title="虚函数"></a>虚函数</h2><p>这里本来会有一些内容的，但是我</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 类与对象</li>
+        <li><strong>Author:</strong> Atreides</li>
+        <li><strong>Created at
+                :</strong> 2024-08-26 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-10-01 16:44:08
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://mst0506.github.io/2024/08/26/类与对象/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/C/">#C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/09/11/Pandas%E5%A4%87%E5%BF%98%E5%BD%95/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Pandas</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/08/12/%E5%88%9D%E8%AF%86%E9%87%8F%E5%8C%96/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item"></span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">类与对象</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0-member-function"><span class="nav-text">成员函数(member function)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E8%AE%BF%E9%97%AE%E8%AF%B4%E6%98%8E%E7%AC%A6-access-specifiers"><span class="nav-text">类访问说明符(access specifiers)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84-file-strcuture"><span class="nav-text">文件结构(file strcuture)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-Constructors"><span class="nav-text">构造函数(Constructors)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0-Destructors"><span class="nav-text">析构函数(Destructors)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#this%E6%8C%87%E9%92%88-this-pointer"><span class="nav-text">this指针(this pointer)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E6%88%90%E5%91%98-static-members"><span class="nav-text">静态成员(static members)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9B%E9%98%B6%E6%93%8D%E4%BD%9C"><span class="nav-text">进阶操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%AC%A6%E9%87%8D%E8%BD%BD-operator-overloading"><span class="nav-text">操作符重载(operator overloading)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8B%E5%85%83%E5%87%BD%E6%95%B0-friend-function"><span class="nav-text">友元函数(friend function)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2-user-defined-type-conversion"><span class="nav-text">自定义类型的类型转换(user defined type conversion)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Mytime-to-int"><span class="nav-text">Mytime to int</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#int%E2%86%92MyTime"><span class="nav-text">int→MyTime</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%93%8D%E4%BD%9C-default-operations"><span class="nav-text">默认操作(default operations)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-default-constructors"><span class="nav-text">默认构造函数(default constructors)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0-default-destructors"><span class="nav-text">默认析构函数(default destructors)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-default-copy-constructors"><span class="nav-text">默认复制构造函数(default copy constructors)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E8%B5%8B%E5%80%BC%E6%93%8D%E4%BD%9C-default-copy-assignment"><span class="nav-text">默认赋值操作(default copy assignment)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%B8%8E%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-text">指针与内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E6%8B%B7%E8%B4%9D%EF%BC%88hard-copy%EF%BC%89"><span class="nav-text">硬拷贝（hard copy）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E6%8B%B7%E8%B4%9D%EF%BC%88soft-copy%EF%BC%89"><span class="nav-text">软拷贝（soft copy）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%EF%BC%88smart-pointers%EF%BC%89"><span class="nav-text">智能指针（smart pointers）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%A4%9A%E6%80%81"><span class="nav-text">继承与多态</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%90%E7%B1%BB%E7%9A%84%E5%88%9B%E5%BB%BA"><span class="nav-text">子类的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E7%9A%84%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F"><span class="nav-text">不同的继承方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E5%87%BD%E6%95%B0"><span class="nav-text">虚函数</span></a></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Atreides</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        11 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

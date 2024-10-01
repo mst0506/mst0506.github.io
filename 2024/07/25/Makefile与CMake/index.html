@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Atreides">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/07/25/makefile与cmake/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="了解常用Linux命令后，接下来学习如何使用Makefile管理C++项目，以及如何使用更方便的CMake，示例代码来自B站up主于仕琪 ，后续的C++学习也是参照于老师的B站及Github. Makefile背景介绍假设我们的目录里有三个源文件及一个头文件，其中main函数为 12345678910#include &lt;iostream&gt;#include &quot;functions">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Makefile与CMake">
+<meta property="og:url" content="http://example.com/2024/07/25/Makefile%E4%B8%8ECMake/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="了解常用Linux命令后，接下来学习如何使用Makefile管理C++项目，以及如何使用更方便的CMake，示例代码来自B站up主于仕琪 ，后续的C++学习也是参照于老师的B站及Github. Makefile背景介绍假设我们的目录里有三个源文件及一个头文件，其中main函数为 12345678910#include &lt;iostream&gt;#include &quot;functions">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2024/png/47156231/1727766445611-98b90fb0-07b3-44a6-ba45-3217c25467be.png">
+<meta property="article:published_time" content="2024-07-24T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-01T07:13:04.141Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.nlark.com/yuque/0/2024/png/47156231/1727766445611-98b90fb0-07b3-44a6-ba45-3217c25467be.png">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/R-C.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/R-C.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/R-C.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            Makefile与CMake -
+        
+        Dune
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/rainbow.jpg","dark":"/images/rainbow.jpg"},"title":" ","subtitle":{"text":["Fake it till you make it.","Stride forward."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Dune
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Dune
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">Makefile与CMake</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/R-C.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Atreides</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-07-25</span>
+        <span class="mobile">2024-07-25</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-10-01 15:13:04</span>
+            <span class="mobile">2024-10-01 15:13:04</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/C/">C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>了解常用Linux命令后，接下来学习如何使用Makefile管理C++项目，以及如何使用更方便的CMake，示例代码来自B站up主<a class="link"   target="_blank" rel="noopener" href="https://space.bilibili.com/519963684" >于仕琪 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a>，后续的C++学习也是参照于老师的B站及Github.</p>
+<h1 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h1><h2 id="背景介绍"><a href="#背景介绍" class="headerlink" title="背景介绍"></a>背景介绍</h2><p>假设我们的目录里有三个源文件及一个头文件，其中main函数为</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;functions.h&quot;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">printhello</span>();</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;This is main function&quot;</span> &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;The factorial of 5 is &quot;</span>&lt;&lt; <span class="built_in">factorial</span>(<span class="number">5</span>) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这里面引用了两个函数printhello()和factorial()，我们将其声明封装在functions.h中，头文件内容为</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> FUNCTIONS_H</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> FUNCTIONS_H</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printhello</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">factorial</span><span class="params">(<span class="type">int</span> n)</span></span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></div>
+
+<p>至于这两个函数，其内容也非常简单，printhello函数打印出“hello world”语句，factorial()函数计算出阶乘，其代码分别为</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;functions.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">printhello</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello, world!&quot;</span> &lt;&lt; endl;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;functions.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">factorial</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (n == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> n * <span class="built_in">factorial</span>(n - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个例子展示了最简单的一种情况，也就是只有少量的源文件需要编译，我们可以直接在终端中编译这三个文件，并将其生成的最终可执行文件记为test1</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ main.cpp factorial.cpp printhello.cpp -o test1</span><br></pre></td></tr></table></figure></div>
+
+<p>然后再运行test1</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./test1</span><br></pre></td></tr></table></figure></div>
+
+<p>程序的结果为</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Hello, world!</span><br><span class="line">This is main <span class="keyword">function</span></span><br><span class="line">The factorial of 5 is 120</span><br></pre></td></tr></table></figure></div>
+
+<p>如果其中某些源文件进行了改动，我们可以只编译这一部分源文件，但是不链接各自目标文件，最后将所有目标文件链接，得到最终可执行文件。比如我们将三个源文件编译但不链接</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ main.cpp printhello.cpp factorial.cpp -c</span><br></pre></td></tr></table></figure></div>
+
+<p>此时在目录下就会产生各个源文件的目标文件，后缀均默认为.o，如果我们后续对某个源代码进行改动，比如factorial函数，那么只需要重新编译这一个文件</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ factorial.cpp -c</span><br></pre></td></tr></table></figure></div>
+
+<p>然后将所有目标文件链接，记为main文件，执行main文件即可</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">g++ *.o -o main</span><br></pre></td></tr></table></figure></div>
+
+<p>这样就不用再编译其他未改动的源文件，提高了效率。</p>
+<p>小结，我们通过人工输入指令，实现了两种管理项目文件的方法，一种是同时编译运行所有源文件，另一种是只编译有改动的源文件，然后再将所有目标文件链接运行。</p>
+<h2 id="版本1"><a href="#版本1" class="headerlink" title="版本1"></a>版本1</h2><p>但实际上我们这些操作完全可以通过脚本命令实现，这就用到了Makefile.首先在vscode中安装Makefile扩展，然后新建文件命名为Makefile即可。在这个例子在，我们可以使用如下命令</p>
+<div class="highlight-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## VERSION 1</span></span><br><span class="line"><span class="section">hello: main.cpp factorial.cpp printhello.cpp</span></span><br><span class="line">    g++ -o hello main.cpp factorial.cpp printhello.cpp</span><br></pre></td></tr></table></figure></div>
+
+<p>需要特别注意，第二行必须要按tab进行缩进。这段命令第一行的含义是我们要生成的目标是hello，冒号后面表示hello依赖于这些文件（注意并没有头文件.h，因为Makefile定义的是编译和链接过程中的依赖关系。头文件通常作为编译过程中的依赖项，而不是编译过程本身的一部分，编译器在编译源代码时会查找并包含相应的头文件）；第二行表示使用这个命令可以生成hello，事实也确实如此。然后我们可以直接在终端中输入<code>make</code>命令，首先会寻找是否存在hello文件，不存在的话就会根据所给定的依赖文件以及命令来生成hello文件。我们可以使用<code>ll</code>命令，发现hello文件的修改日期比三个源文件都要新，这时我们再运行<code>make</code>命令，就会提示“hello” is up to date.这说明hello是最新的文件，没有必要再去生成，除非我们修改hello依赖的源文件，这时候hello的修改日期就不是最新了，再执行<code>make</code>命令就会重新生成。</p>
+<p>注意，这里我们使用Makefile实现的是背景介绍中的第一种方法。从生成的可执行文件也可以看出来，这个makefile只会生成最终的可执行文件hello，而第二种方法还会生成每个源文件的目标文件。</p>
+<h2 id="版本2"><a href="#版本2" class="headerlink" title="版本2"></a>版本2</h2><p>我们当然也可以用Makefile实现第二种方法，具体内容为</p>
+<div class="highlight-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">## VERSION 2</span></span><br><span class="line">CXX = g++</span><br><span class="line">TARGET = hello</span><br><span class="line">OBJ = main.o printhello.o factorial.o</span><br><span class="line"><span class="variable">$(TARGET)</span>:<span class="variable">$(OBJ)</span></span><br><span class="line">    <span class="variable">$(CXX)</span> -o <span class="variable">$(TARGET)</span> <span class="variable">$(OBJ)</span></span><br><span class="line"></span><br><span class="line"><span class="section">main.o: main.cpp</span></span><br><span class="line">    <span class="variable">$(CXX)</span> -c main.cpp</span><br><span class="line"></span><br><span class="line"><span class="section">printhello.o: printhello.cpp</span></span><br><span class="line">    <span class="variable">$(CXX)</span> -c printhello.cpp</span><br><span class="line"></span><br><span class="line"><span class="section">factorial.o: factorial.cpp</span></span><br><span class="line">    <span class="variable">$(CXX)</span> -c factorial.cpp</span><br></pre></td></tr></table></figure></div>
+
+<p>具体来讲，这里是使用了类似shell编程的方法，定义了CXX、TARGET、OBJ变量，分别表示编译器、目标文件、依赖项，然后分别用变量表示，写了四条和版本1一样的语句。这样我们再去运行<code>make</code>命令，就会生成三个目标文件以及最终可执行文件hello.同样的，这里也是根据修改时间先后，来判断是否进行更新。而不同的是，这个Makefile文件会只编译发生改变的源文件，这就实现了背景介绍中的方法2.</p>
+<h2 id="版本3"><a href="#版本3" class="headerlink" title="版本3"></a>版本3</h2><p>截止目前，Makefile的编写都在可理解范围内，接下来就会逐渐抽象了😅</p>
+<div class="highlight-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">CXX = g++</span><br><span class="line">TARGET = hello</span><br><span class="line">OBJ = main.o printhello.o factorial.o</span><br><span class="line"></span><br><span class="line">CXXFLAGS =-c -Wall</span><br><span class="line"></span><br><span class="line"><span class="variable">$(TARGET)</span>: <span class="variable">$(OBJ)</span></span><br><span class="line">    <span class="variable">$(CXX)</span> -o <span class="variable">$@</span> <span class="variable">$^</span></span><br><span class="line"><span class="section">%.o: %.cpp</span></span><br><span class="line">    <span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">    rm -f *.o <span class="variable">$(TARGET)</span></span><br></pre></td></tr></table></figure></div>
+
+<p>在这段命令中，前三行是一样的，CXXFLAGS定义了编译选项，<code>-Wall</code>的意思是Warning all，显示所有的warnings.然后在TARGET与OBJ的实现方式中，<code>$@</code>就表示版本2中的<code>$(TARGET)</code>，<code>$^</code>就表示版本2中的<code>$(OBJ)</code>，也就是上面的所有依赖文件。然后下面的具体到每个目标文件的依赖与生存方式，用%.o与%.cpp来避免了书写每个文件的文件名。这样的好处是以后如果增加了源文件，直接在OBJ中添加就行。</p>
+<p>clean命令中的<code>rm</code>是删除，加上<code>-f</code>表示强制删除，所以意思是删除所有的.o文件以及TARGET文件，也就是只剩下源文件及头文件了。所以在之后可以使用<code>make clean</code>命令快速删除生成的所有可执行文件与目标文件。而<code>.PHONY</code>是声明一个叫clean的伪目标，可以理解为如果目录中存在一个叫clean的文件，那么<code>make clean</code>这个命令就会显示已经是最新了，而不会执行删除操作，声明之后相当于排除掉这种情况，只会执行删除操作，即使真的存在名为clean的文件。实际上定义伪目标，就是为了定义一个与最后修改时间、是否存在相应文件都无关的命令，这个命令每次都会被执行。</p>
+<h2 id="版本4"><a href="#版本4" class="headerlink" title="版本4"></a>版本4</h2><p>版本3虽然有些抽象，但是已经解放了大部分操作，在增加或删除依赖项时只需要修改OBJ变量即可，版本4则会更进一步，在项目变动时不需要改动Makefile文件。</p>
+<div class="highlight-container" data-rel="Makefile"><figure class="iseeu highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">CXX = g++</span><br><span class="line">TARGET = hello</span><br><span class="line">SRC = <span class="variable">$(<span class="built_in">wildcard</span> *.cpp)</span></span><br><span class="line">OBJ = <span class="variable">$(<span class="built_in">patsubst</span> %.cpp,%.o,<span class="variable">$(SRC)</span>)</span></span><br><span class="line"></span><br><span class="line">CXXFLAGS =-c -Wall</span><br><span class="line"></span><br><span class="line"><span class="variable">$(TARGET)</span>: <span class="variable">$(OBJ)</span></span><br><span class="line">    <span class="variable">$(CXX)</span> -o <span class="variable">$@</span> <span class="variable">$^</span></span><br><span class="line"><span class="section">%.o: %.cpp</span></span><br><span class="line">    <span class="variable">$(CXX)</span> <span class="variable">$(CXXFLAGS)</span> <span class="variable">$&lt;</span> -o <span class="variable">$@</span></span><br><span class="line"><span class="meta"><span class="keyword">.PHONY</span>: clean</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">    rm -f *.o <span class="variable">$(TARGET)</span></span><br></pre></td></tr></table></figure></div>
+
+<p>相比于版本3，这里只增加了SRC和改动了OBJ，实际上就是自动获取目录中的所有源文件及目标文件，这样就完全实现自动化了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>我们首先分析了管理C++项目的两种方式，一种是直接编译运行所有源文件，但是在源文件非常多，而我们只更改了一部分时，那么再编译所有源文件是很抵销的。于是想出可以分别编译每个源文件，这样只需要对有改动的源文件重新编译，再将所有可执行文件链接运行。这两种方法都可以通过脚本命令实现，于是有了版本1和版本2的Makefile，为了实现Makefile的自动化，又诞生出了版本3与版本4，虽然功能强大，但是过于抽象。更重要的是，Makefile跟你的配置环境是强相关的，不同的操作系统、编译环境下的Makefile都是不同的，对于跨平台开发会带来很多麻烦。那么有没有更简单更好的办法呢？有的，那就是大名鼎鼎的CMake.🤓</p>
+<h1 id="CMake"><a href="#CMake" class="headerlink" title="CMake"></a>CMake</h1><blockquote>
+<p>CMake就是方便我们生成Makefile的工具。</p>
+</blockquote>
+<h2 id="操作步骤"><a href="#操作步骤" class="headerlink" title="操作步骤"></a>操作步骤</h2><p>首先在同一目录下创建CMakeLists.txt，然后只需要输入三行命令</p>
+<div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cmake_minimum_required(VERSION 3.10)</span><br><span class="line"></span><br><span class="line">project(hello)</span><br><span class="line"></span><br><span class="line">add_executable(hello main.cpp factorial.cpp printhello.cpp)     </span><br></pre></td></tr></table></figure></div>
+
+<p>第一行表示所需的CMake的最低版本，第二行表示项目名称，第三行添加可执行文件hello以及所依赖的目标文件。然后我们使用<code>cmake .</code>命令，后面的<code>·</code>表示在当前目录去查找我们的txt文本，会得到如下内容</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-- The C compiler identification is GNU 13.2.0</span><br><span class="line">-- The CXX compiler identification is GNU 13.2.0</span><br><span class="line">-- Detecting C compiler ABI info</span><br><span class="line">-- Detecting C compiler ABI info - <span class="keyword">done</span></span><br><span class="line">-- Check <span class="keyword">for</span> working C compiler: /usr/bin/cc - skipped</span><br><span class="line">-- Detecting C compile features</span><br><span class="line">-- Detecting C compile features - <span class="keyword">done</span></span><br><span class="line">-- Detecting CXX compiler ABI info</span><br><span class="line">-- Detecting CXX compiler ABI info - <span class="keyword">done</span></span><br><span class="line">-- Check <span class="keyword">for</span> working CXX compiler: /usr/bin/c++ - skipped</span><br><span class="line">-- Detecting CXX compile features</span><br><span class="line">-- Detecting CXX compile features - <span class="keyword">done</span></span><br><span class="line">-- Configuring <span class="keyword">done</span> (1.7s)</span><br><span class="line">-- Generating <span class="keyword">done</span> (0.0s)</span><br><span class="line">-- Build files have been written to: /home/mst/howtomakefile</span><br></pre></td></tr></table></figure></div>
+
+<p>也就是查询系统中的相关配置，然后根据你的CMakeLists.txt文件中的内容生成配置文件，这其中最重要的是会帮我们生成一个Makefile，有了Makefile后，我们就可以使用它进行编译了，再输入<code>make</code>命令，就会开始编译运行。</p>
+<p>因此，我们的操作步骤是：写CMakeLists.txt→使用<code>cmake .</code>生成Makefile文件→利用Makefile文件进行<code>make</code>，编译项目。</p>
+<h2 id="创建build目录"><a href="#创建build目录" class="headerlink" title="创建build目录"></a>创建build目录</h2><p>完成上述步骤后，其实目录内还多了许多无关的临时文件，我们可以使用<code>rm</code>以及<code>rm -rf</code>命令删除文件与目录，但是需要手动输入文件名与目录名。更简洁的做法是<code>cmake -B build</code>，会创建build目录，并将所有生成的文件都存放在这个目录下。我们可以在这个目录中进行编译，最后需要删除时直接删除build目录即可。</p>
+<h2 id="VScode中的CMake"><a href="#VScode中的CMake" class="headerlink" title="VScode中的CMake"></a>VScode中的CMake</h2><p>在VScode中，CMake的使用则更加简单。首先，安装cmake的相关插件。然后，将我们的项目文件夹打开作为工作区。接下来，在VScode正上方的搜索栏，输入&gt;C，选择“CMake:快速入门”。</p>
+<p><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://cdn.nlark.com/yuque/0/2024/png/47156231/1727766445611-98b90fb0-07b3-44a6-ba45-3217c25467be.png"
+                     
+                ></p>
+<p>接下来按照指引，选择自己需要的配置，直到左边的文件目录中出现CMakeLists.txt文件，然后按Esc退出搜索栏，后续的操作就是生成Makefile与make了。这样的话，我们连CMakeLists.txt也不用写了，点点鼠标就可以了。😎</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>磨刀不误砍柴工，这两篇文章应该是把C++的前置内容总结完了，接下来的内容应该会专注于C++本身的特性及语法，希望能在假期结束前完成1-2个项目。</p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV188411L7d2/?spm_id_from=333.999.0.0&vd_source=7d414cce2a812956de784a4ba8f148a8" >Makefile 20分钟入门，简简单单，展示如何使用Makefile管理和编译C++代码_哔哩哔哩_bilibili <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1bg411p7oS/?spm_id_from=333.788.recommend_more_video.-1&vd_source=7d414cce2a812956de784a4ba8f148a8" >CMake 6分钟入门，不用再写复杂的Makefile_哔哩哔哩_bilibili <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></li>
+</ul>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> Makefile与CMake</li>
+        <li><strong>Author:</strong> Atreides</li>
+        <li><strong>Created at
+                :</strong> 2024-07-25 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-10-01 15:13:04
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://mst0506.github.io/2024/07/25/Makefile与CMake/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/C/">#C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/07/27/%E5%87%BD%E6%95%B0/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">函数</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/07/22/%E5%B8%B8%E7%94%A8Linux%E5%91%BD%E4%BB%A4/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">常用Linux命令</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">Makefile与CMake</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Makefile"><span class="nav-text">Makefile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF%E4%BB%8B%E7%BB%8D"><span class="nav-text">背景介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC1"><span class="nav-text">版本1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC2"><span class="nav-text">版本2</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC3"><span class="nav-text">版本3</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC4"><span class="nav-text">版本4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BB%93"><span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CMake"><span class="nav-text">CMake</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4"><span class="nav-text">操作步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAbuild%E7%9B%AE%E5%BD%95"><span class="nav-text">创建build目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VScode%E4%B8%AD%E7%9A%84CMake"><span class="nav-text">VScode中的CMake</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Atreides</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        11 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

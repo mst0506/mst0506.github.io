@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Atreides">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/07/27/函数/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="函数这个概念其实之前早已接触，这节主要是介绍一下在C++中更为细节的部分。 函数的位置正常来讲，函数应该先定义再使用，比如 12345678bool draw(int x, int y, int z) &#123;    &#x2F;&#x2F; Your code here    return true;&#125;int main() &#123;    draw(1, 2, 3);    return 0;&amp;#">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数">
+<meta property="og:url" content="http://example.com/2024/07/27/%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="函数这个概念其实之前早已接触，这节主要是介绍一下在C++中更为细节的部分。 函数的位置正常来讲，函数应该先定义再使用，比如 12345678bool draw(int x, int y, int z) &#123;    &#x2F;&#x2F; Your code here    return true;&#125;int main() &#123;    draw(1, 2, 3);    return 0;&amp;#">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-01T08:05:32.462Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/R-C.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/R-C.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/R-C.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            函数 -
+        
+        Dune
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/rainbow.jpg","dark":"/images/rainbow.jpg"},"title":" ","subtitle":{"text":["Fake it till you make it.","Stride forward."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Dune
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Dune
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">函数</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/R-C.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Atreides</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-07-27</span>
+        <span class="mobile">2024-07-27</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-10-01 16:05:32</span>
+            <span class="mobile">2024-10-01 16:05:32</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/C/">C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <p>函数这个概念其实之前早已接触，这节主要是介绍一下在C++中更为细节的部分。</p>
+<h2 id="函数的位置"><a href="#函数的位置" class="headerlink" title="函数的位置"></a>函数的位置</h2><p>正常来讲，函数应该先定义再使用，比如</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">draw</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// Your code here</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">draw</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们先定义函数draw()，然后在接下来的主函数中调用。但是有的时候，我们只是知道会在主函数中多次重复某个操作，需要编写函数，但是希望首先完成主函数，最后再去实现编写的函数，这时就可以先声明，再定义。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">draw</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span></span>;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">draw</span>(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">draw</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// code to draw a 3D object</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子中，我们首先声明了函数draw，并且在主函数中去使用它。在编译到主函数中的draw时，由于前面已经声明过而不会报错，然后我们可以在主函数之后给出draw的定义。以上两种方式都适用于比较小型的代码，实际上，如果项目比较复杂，我们一般将一类函数放在同一个CPP文件中，并且编写头文件以方便引用。举个例子，假如我们有一个绘制矩形的函数和一个绘制三角形的函数，我们可以编写一个CPP文件，存储这两个函数。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;draw.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">draw_rectangle</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// code to draw a 3D object</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">draw_triangle</span><span class="params">(<span class="type">int</span> x, <span class="type">int</span> y, <span class="type">int</span> z)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// code to draw a 3D object</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>然后我们在主函数文件中，直接调用这两个函数</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;draw.h&quot;</span></span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="built_in">draw_rectangle</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>而对于头文件，只需要保存两个绘图函数的声明即可。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// draw.h</span></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> __DRAW_H__</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> __DRAW_H__</span></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">drawLine</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2)</span></span>;</span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">drawRectangle</span><span class="params">(<span class="type">int</span> x1, <span class="type">int</span> y1, <span class="type">int</span> x2)</span></span>;</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure></div>
+
+<p>需要注意的是，这里有一些预处理指令，<code>#ifndef</code>即if not define，表示如果没有定义后面的宏，就会执行后续语句，一直遇到<code>#endif</code>。如果后面的宏已经被定义，那么在<code>#ifndef</code>与<code>#endif</code>之间的所有语句都不会被执行。这些预处理指令的作用是防止头文件被多次引用，原理是在第一次引用时，if not define判定为true，就会执行后续语句，定义一个名为__DRAW_H__的宏（宏的名字当然可以随意起，不过建议与头文件名相同），并且执行后续的函数声明，直到<code>#endif</code>；在发生后续引用时，if not define判定为false，那么就不会执行<code>#ifndef</code>与<code>#endif</code>之间的所有语句，也就避免了多次引用。</p>
+<p>函数的使用是有助于增加我们代码的可读性及可维护性的，当然也会有一些性能上的代价，不过在大部分情况下，只要函数不是特别复杂，带来的收益还是大于损失的，这也是几乎所有编程课程都鼓励使用函数的原因。</p>
+<h2 id="参数传递"><a href="#参数传递" class="headerlink" title="参数传递"></a>参数传递</h2><h3 id="值传递-pass-by-value"><a href="#值传递-pass-by-value" class="headerlink" title="值传递(pass by value)"></a>值传递(pass by value)</h3><p>也就是将传入的值进行拷贝，在函数中的操作都是针对拷贝后产生的这个局部变量，参数本身不会发生改变。举个例子</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">sum</span><span class="params">(<span class="type">int</span> x)</span></span>&#123;</span><br><span class="line">        x += <span class="number">10</span>;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="type">int</span> num1 = <span class="number">10</span>;</span><br><span class="line">        <span class="type">int</span> num2 = <span class="built_in">sum</span>(num1);</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们定义了一个sum函数，在将num1传入函数时，其实是将10这个值进行了拷贝，赋给x这个局部变量，对于x的操作自然不会影响num1的值。这里我们是直接传递基本数据类型，那么如果我们将指针传入函数呢？同样的，是将指针的内容进行拷贝，然后传入函数进行处理。但是需要注意的是，指针存储的内容是地址，有了地址，我们就可以通过拷贝的指针去修改这块内存地址上的内容。除此之外，函数传递的参数可能是结构体、数组等，它们也都是值传递，但是如果我们的参数非常大，比如是一个占据了1kb的矩阵，再去进行拷贝的话就会浪费内存。一种解决方法是用传递指针，但是如果不小心出现越界的情况，就会带来bug，一种兼顾了效率与安全的方法就是下面的引用传递(pass by reference)。</p>
+<h3 id="引用传递-pass-by-reference"><a href="#引用传递-pass-by-reference" class="headerlink" title="引用传递(pass by reference)"></a>引用传递(pass by reference)</h3><p>reference是C++的特性，在C语言中没有。实际上就是给变量起一个别名，两个名称都对应同一个数据。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span>&amp; ref = a;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;a = &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;ref = &quot;</span> &lt;&lt; ref &lt;&lt; endl;</span><br><span class="line">    ref = <span class="number">20</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;a = &quot;</span> &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;ref = &quot;</span> &lt;&lt; ref &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>比如在这段代码中，我们定义了一个整型变量a，初始化为10.使用 <code>int &amp; ref =a</code>，为a定义了一个别名ref，注意这里的&amp;并不是取地址的意思，在数据类型后的&amp;是创建引用的符号。然后我们输出二者的值，修改ref后再输出二者的值。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = 10</span><br><span class="line">ref = 10</span><br><span class="line">a = 20</span><br><span class="line">ref = 20</span><br></pre></td></tr></table></figure></div>
+
+<p>可以看到通过ref也可以实现对a的修改，并且别名是必须在有变量名称的时候才可以定义的（就像你得先有一个名字，才能取第二个名字），这就天然避免了空指针这样的问题。在实际使用reference进行参数传递的时候，也非常的简单，只需要在参数前面加入&amp;符号，如果不希望原值更改，也可以加上const关键字。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">Matrix</span>&#123;</span><br><span class="line">        <span class="comment">//some code </span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">float</span> <span class="title">matrix_max</span><span class="params">(<span class="type">const</span> Matrix&amp; mat)</span></span>&#123;</span><br><span class="line">        <span class="comment">// some code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="函数的返回值"><a href="#函数的返回值" class="headerlink" title="函数的返回值"></a>函数的返回值</h2><p>在一些返回结果比较复杂的函数中，比如我们定义一个矩阵加法函数，最后的返回值是一个矩阵，比较好的做法是定义一个布尔函数，然后在传参时就定义一个矩阵用来接收返回结果。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">matrix_add</span><span class="params">(<span class="type">const</span> Matrix&amp; A, <span class="type">const</span> Matrix&amp; B, Matrix&amp; C)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// check if matrices can be added</span></span><br><span class="line">    <span class="comment">// recreate C if necessary</span></span><br><span class="line">    <span class="comment">// do the addition</span></span><br><span class="line">    <span class="comment">// return true if successful, false otherwise</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>比如我们首先在函数外定义一个矩阵C用于接收结果，然后在传参时将三个矩阵一并传入，注意这里我们用到了reference，以及将输入矩阵A和B设定为不可修改。在函数中，我们首先进行类型的检查等前置操作，然后执行矩阵加法，最后根据程序是否成功返回布尔值。</p>
+<h2 id="内联函数-inline-function"><a href="#内联函数-inline-function" class="headerlink" title="内联函数(inline function)"></a>内联函数(inline function)</h2><p>前面我们以及提到，函数的使用是有代价的，比如要进行压栈跳转等操作，如果对于一些比较简单的函数，频繁去调用函数带来的代价就是不可忽视的，因此就有了内联函数。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="type">float</span> <span class="title">max</span><span class="params">(<span class="type">float</span> a, <span class="type">float</span> b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (a &gt; b)? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">float</span> a = <span class="number">10.0</span>, b = <span class="number">5.0</span>;</span><br><span class="line">    <span class="type">float</span> result = <span class="built_in">max</span>(a, b);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;The maximum of &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot; and &quot;</span> &lt;&lt; b &lt;&lt; <span class="string">&quot; is &quot;</span> &lt;&lt; result &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在具体使用中，我们只需要在原本函数前加上inline关键字，就可以创建内联函数，在编译器生成的指令中，主函数中调用了max的部分就会被替换成max函数中的内容，不过代价就是最后的执行指令会变长，也是一种以空间换时间的方法。需要注意的是，inline只是给编译器的建议。也就是说，如果对于很长很复杂的函数，即使使用inline，编译器也不会将其视为内联函数，此外，在一些版本的编译器中，会自动将简单的函数作为内联函数处理，比如类中的成员函数。</p>
+<p>通过前面的介绍，我们发现内联函数有点类似于宏，那么为什么不直接使用宏呢？宏是在预处理阶段执行，对源代码进行文本替换，虽然用起来很灵活，但是也很危险。第一点就是涉及到参数部分，一定要加上括号，因为简单的文本替换，代码中可能出现多个运算符在一起，不加括号可能会使得代码的含义改变；此外就是函数是有处理传递参数的机制的，但是宏只是替换，一个简单的i++就有可能使得运行结果出错。这种错误也不会被编译器发现，一旦出现就非常麻烦。</p>
+<h2 id="默认参数-default-arguments"><a href="#默认参数-default-arguments" class="headerlink" title="默认参数(default arguments)"></a>默认参数(default arguments)</h2><p>和reference一样，默认参数也是C++中的一个特性。这里我们参数使用的是argument，而不是parameter，二者的区别在于parameter是形参，argument是实参。默认参数即在函数声明时指定某些参数的默认值，但是需要注意，只能从后往前设置默认参数。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">float</span> <span class="title">add</span><span class="params">(<span class="type">float</span> a, <span class="type">float</span> b, <span class="type">float</span> c=<span class="number">0.0</span>)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b+c;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="type">float</span> <span class="title">add</span><span class="params">(<span class="type">float</span> a, <span class="type">float</span> b=<span class="number">0.0</span>, <span class="type">float</span> c)</span></span>;<span class="comment">//wrong</span></span><br></pre></td></tr></table></figure></div>
+
+<p>比如我们可以设定c的默认值是0，也可以设置b和c的默认值，但是不能只设置b的默认值而不设置c的默认值。这是因为调用函数时，如果省略了某些参数，编译器需要根据剩余参数的位置来推断出哪些参数被省略了。我们把默认参数都放在后面，在调用函数时就可以不用考虑，直接写未默认的参数。</p>
+<h2 id="函数重载-overloading"><a href="#函数重载-overloading" class="headerlink" title="函数重载(overloading)"></a>函数重载(overloading)</h2><p>同样是C++的一个特性，允许在同一个作用域内定义多个同名函数，只要它们的参数列表不同。编译器在区分同名函数时，是按照参数进行区分，即参数的类型和数量，默认参数、参数的顺序以及返回值的类型不会被考虑在内。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数重载示例</span></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> a)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Integer: &quot;</span> &lt;&lt; a &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">double</span> a)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Double: &quot;</span> &lt;&lt; a &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">print</span><span class="params">(<span class="type">int</span> a, <span class="type">int</span> b)</span> </span>&#123;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Two integers: &quot;</span> &lt;&lt; a &lt;&lt; <span class="string">&quot; and &quot;</span> &lt;&lt; b &lt;&lt; std::endl;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">10</span>);      <span class="comment">// 调用第一个print函数</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="number">20.5</span>);    <span class="comment">// 调用第二个print函数</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="number">30</span>, <span class="number">40</span>);  <span class="comment">// 调用第三个print函数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子中，<code>print</code> 函数被重载了三次，每次接受不同类型或数量的参数。编译器根据传递给 <code>print</code> 函数的实际参数来确定调用哪个重载版本。</p>
+<h2 id="函数模板-Template"><a href="#函数模板-Template" class="headerlink" title="函数模板(Template)"></a>函数模板(Template)</h2><p>前面在编写重载函数时，结构相同的函数我们写了三次，那么有没有一种方法能够减少重复性的操作呢？换句话说，可不可以为函数定义一个“函数”，这样对于那些实现逻辑类似的函数，我们可以在不同使用场景下，能通过这个“函数”自动去匹配适合的函数？答案是肯定的，可以使用C++中的函数模板。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;typeinfo&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">sum</span> <span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;The input type is &quot;</span> &lt;&lt; <span class="built_in">typeid</span>(T).<span class="built_in">name</span>() &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">template</span> <span class="type">double</span> <span class="title">sum</span> <span class="params">(<span class="type">double</span> a, <span class="type">double</span> b)</span></span>;<span class="comment">//double类型的显式实例化</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">auto</span> result = <span class="built_in">sum</span>(<span class="number">1.2f</span>, <span class="number">2.0f</span>);</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;The result is &quot;</span> &lt;&lt; result &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>我们首先使用<code>template &lt;typename T&gt;</code>定义T为一个泛型，从typename也可以看出T就是一个数据类型的名字。然后接下来就定义一个函数sum，因为函数的参数和返回值都是一样的类型，所以涉及到数据类型的地方都用T代替。当然，如果函数里涉及到不止一个数据类型，那就定义多个typename即可。需要注意的是，如果仅有函数模板，那么编译器并不会生成可执行代码，因为函数内部一些操作的实现方式是不确定的，比如加法操作，编译器不知道是int类型的加法还是double类型的加法，因此必须实例化后才能编译。上面例子中，我们通过<code>template double sum(double a, double b)</code>进行了显示实例化，直接声明了double类型的的sum函数，我们运行代码，得到的结果是</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The input <span class="built_in">type</span> is f</span><br><span class="line">The result is 3.2</span><br></pre></td></tr></table></figure></div>
+
+<p>这里面似乎不对，为什么显示输入类型是float呢？这是因为模板也有隐式实例化，编译器会通过调用的函数来确定sum的类型。我们在调用sum函数时，输入的1.2f说明数据是float类型，这就相当于声明了现在使用的函数类型是float，而非double.如果我们只是输入1.2与2.0，那么就会调用double类型的sum函数。</p>
+<p>在有的时候，如果我们的函数涉及到复杂数据类型以及未被定义的操作，比如实现两个结构体的sum函数，就不能简单进行实例化了，需要进行特例化(specialization)。举个例子</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> T&gt;</span><br><span class="line"><span class="function">T <span class="title">sum</span><span class="params">(T a, T b)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span> &#123;</span><br><span class="line">    <span class="type">int</span> x, y;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;&gt;</span><br><span class="line"><span class="function">Point <span class="title">sum</span><span class="params">(Point a, Point b)</span> </span>&#123;</span><br><span class="line">    Point c;</span><br><span class="line">    c.x = a.x + b.x;</span><br><span class="line">    c.y = a.y + b.y;</span><br><span class="line">    <span class="keyword">return</span> c;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Point p1, p2;</span><br><span class="line">    p<span class="number">1.</span>x = <span class="number">1</span>;</span><br><span class="line">    p<span class="number">1.</span>y = <span class="number">2</span>;</span><br><span class="line">    p<span class="number">2.</span>x = <span class="number">3</span>;</span><br><span class="line">    p<span class="number">2.</span>y = <span class="number">4</span>;</span><br><span class="line">    Point p3 = <span class="built_in">sum</span>(p1, p2);</span><br><span class="line">    cout &lt;&lt; p<span class="number">3.</span>x &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; p<span class="number">3.</span>y &lt;&lt; endl;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>特例化与实例化的区别在于：1、实例化只需要在函数名中将T的具体类型确定即可，而特例化需要写出函数体的内容；2、template后必须加上尖括号&lt;&gt;.在这个例子中我们定义了一个Point结构体，存储了点的横纵坐标，那么在特例化的时候，就需要写清楚怎么实现点的加法。</p>
+<h2 id="函数指针与引用"><a href="#函数指针与引用" class="headerlink" title="函数指针与引用"></a>函数指针与引用</h2><p>前面我们介绍了指针，在函数传参的部分，介绍了与指针类似但避免了越界问题的优化方案——引用。其实对于函数，我们也可以定义指针与引用。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">float</span> <span class="title">norm1</span><span class="params">(<span class="type">float</span> x, <span class="type">float</span> y)</span></span>;</span><br><span class="line"><span class="function"><span class="type">float</span> <span class="title">norm2</span><span class="params">(<span class="type">float</span> x, <span class="type">float</span> y)</span></span>;<span class="comment">//定义两个求范数的函数</span></span><br><span class="line"><span class="built_in">float</span> (*point_1) (<span class="type">float</span> x, <span class="type">float</span> y);</span><br><span class="line"><span class="built_in">float</span> (*point_2) (<span class="type">float</span> x, <span class="type">float</span> y);<span class="comment">//定义两个函数指针</span></span><br><span class="line">point_1 = norm1;</span><br><span class="line">point_2 = &amp;norm2;<span class="comment">//两种函数指针赋值的方式</span></span><br><span class="line"><span class="type">float</span> len1 = <span class="built_in">point_1</span>(<span class="number">1.0f</span>,<span class="number">2.0f</span>);</span><br><span class="line"><span class="type">float</span> len2 = *<span class="built_in">point_2</span>(<span class="number">1.0f</span>,<span class="number">2.0f</span>)<span class="comment">//两种使用函数指针的方式</span></span><br></pre></td></tr></table></figure></div>
+
+<p>比如在上面的例子中，我们首先定义了两个求范数的函数。然后定义了两个函数指针，不同于一般的指针，函数指针除了要定义指针的类型（这里为float），还要定义函数内参数的类型（这里是两个float）。对于函数指针的赋值，既可以直接将函数名赋给指针，然后在使用的时候用指针名代替函数名，比如指针1；也可以跟基本数据类型的指针一样，先&amp;取地址，再*取内容，比如指针2.</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">float</span> (&amp;ref) (<span class="type">float</span> x, <span class="type">float</span> y);</span><br></pre></td></tr></table></figure></div>
+
+<p>而同样的，我们将*换成&amp;，就可以得到函数的引用。需要注意的是，不管是函数指针还是函数引用，都需要加上括号，如果不加</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">float</span> *<span class="title">point</span> <span class="params">(<span class="type">float</span> x, <span class="type">float</span> y)</span></span></span><br></pre></td></tr></table></figure></div>
+
+<p>像上面这样，就是定义了一个函数point，其返回值是一个float类型的指针。</p>
+<p>在实际使用中，函数指针与函数引用一般用在某些函数（比如C++标准库中的快排）的参数中也包含函数的情况，方便传参。</p>
+<h1 id="总结归纳"><a href="#总结归纳" class="headerlink" title="总结归纳"></a>总结归纳</h1><p>一些函数基础内容的大杂烩。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 函数</li>
+        <li><strong>Author:</strong> Atreides</li>
+        <li><strong>Created at
+                :</strong> 2024-07-27 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-10-01 16:05:32
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://mst0506.github.io/2024/07/27/函数/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/C/">#C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/08/10/hello-world/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Hello World</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="next"
+                        rel="next"
+                        href="/2024/07/25/Makefile%E4%B8%8ECMake/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">Makefile与CMake</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">函数</div>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E4%BD%8D%E7%BD%AE"><span class="nav-text">函数的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E4%BC%A0%E9%80%92"><span class="nav-text">参数传递</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%80%BC%E4%BC%A0%E9%80%92-pass-by-value"><span class="nav-text">值传递(pass by value)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92-pass-by-reference"><span class="nav-text">引用传递(pass by reference)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E7%9A%84%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="nav-text">函数的返回值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E8%81%94%E5%87%BD%E6%95%B0-inline-function"><span class="nav-text">内联函数(inline function)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%8F%82%E6%95%B0-default-arguments"><span class="nav-text">默认参数(default arguments)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E9%87%8D%E8%BD%BD-overloading"><span class="nav-text">函数重载(overloading)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%A8%A1%E6%9D%BF-Template"><span class="nav-text">函数模板(Template)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%BD%E6%95%B0%E6%8C%87%E9%92%88%E4%B8%8E%E5%BC%95%E7%94%A8"><span class="nav-text">函数指针与引用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%BD%92%E7%BA%B3"><span class="nav-text">总结归纳</span></a>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Atreides</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        11 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>

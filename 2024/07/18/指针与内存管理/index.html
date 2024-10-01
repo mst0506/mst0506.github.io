@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Atreides">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2024/07/18/指针与内存管理/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="指针(Pointer) 指针就是一个存储地址的特殊变量。  主要了解两个操作符：&amp;，对对象取地址，与之对应的是*，从地址中取内容。举个例子 12345678910111213141516#include &lt;iostream&gt;using namespace std;int main() &#123;    int x &#x3D; 5;    int * p1 &#x3D; NULL;    int">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指针与内存管理">
+<meta property="og:url" content="http://example.com/2024/07/18/%E6%8C%87%E9%92%88%E4%B8%8E%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="指针(Pointer) 指针就是一个存储地址的特殊变量。  主要了解两个操作符：&amp;，对对象取地址，与之对应的是*，从地址中取内容。举个例子 12345678910111213141516#include &lt;iostream&gt;using namespace std;int main() &#123;    int x &#x3D; 5;    int * p1 &#x3D; NULL;    int">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-07-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-10-01T07:58:51.628Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/R-C.jpg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/R-C.jpg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/R-C.jpg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            指针与内存管理 -
+        
+        Dune
+    </title>
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+
+    <!--- Inject Part-->
+    
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/assets/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/GeistMono/geist-mono.css">
+
+    
+<link rel="stylesheet" href="/fonts/Geist/geist.css">
+
+    <!--- Font Part-->
+    
+    
+    
+    
+
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+    
+
+    <script id="hexo-configurations">
+    window.config = {"hostname":"example.com","root":"/","language":"en"};
+    window.theme = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":false,"link_icon":true,"title_alignment":"left","headings_top_spacing":{"h1":"3.2rem","h2":"2.4rem","h3":"1.9rem","h4":"1.6rem","h5":"1.4rem","h6":"1.3rem"}},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":false,"list":[]},"code_block":{"copy":true,"style":"mac","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":false,"expand":true,"init_open":true},"copyright":{"enable":true,"default":"cc_by_nc_sa"},"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null,"default_mode":"light"},"global":{"fonts":{"chinese":{"enable":false,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://cn.vercount.one/js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"preloader":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/rainbow.jpg","dark":"/images/rainbow.jpg"},"title":" ","subtitle":{"text":["Fake it till you make it.","Stride forward."],"hitokoto":{"enable":false,"api":"https://v1.hitokoto.cn"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":true,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":false,"style":"default","links":{"github":null,"instagram":null,"zhihu":null,"twitter":null,"email":null},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null,"lrc":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.6.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"width":{"home":"1200px","pages":"1000px"},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"show_on_mobile":true,"links":null},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2022/8/17 11:45:14"};
+    window.lang_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    window.data = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+<!--        <span class="swup-progress-icon">-->
+<!--            <i class="fa-solid fa-circle-notch fa-spin"></i>-->
+<!--        </span>-->
+    
+</div>
+
+
+
+    <style>
+    :root {
+        --preloader-background-color: #fff;
+        --preloader-text-color: #000;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        :root {
+            --preloader-background-color: #202124;
+            --preloader-text-color: #fff;
+        }
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root {
+            --preloader-background-color: #fff;
+            --preloader-text-color: #000;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .ml13 {
+            font-size: 2.6rem !important; /* Adjust this value as needed */
+        }
+    }
+
+    .preloader {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* Tailwind 'gap-4' is 1rem */
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+        padding: 12px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh; /* 'h-screen' is 100% of the viewport height */
+        background-color: var(--preloader-background-color);
+        z-index: 1100; /* 'z-[1100]' sets the z-index */
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    .ml13 {
+        font-size: 3.2rem;
+        /* text-transform: uppercase; */
+        color: var(--preloader-text-color);
+        letter-spacing: -1px;
+        font-weight: 500;
+        font-family: 'Chillax-Variable', sans-serif;
+        text-align: center;
+    }
+
+    .ml13 .word {
+        display: inline-flex;
+        flex-wrap: wrap;
+        white-space: nowrap;
+    }
+
+    .ml13 .letter {
+        display: inline-block;
+        line-height: 1em;
+    }
+</style>
+
+<div class="preloader">
+    <h2 class="ml13">
+        Dune
+    </h2>
+    <script>
+        var textWrapper = document.querySelector('.ml13');
+        // Split text into words
+        var words = textWrapper.textContent.trim().split(' ');
+
+        // Clear the existing content
+        textWrapper.innerHTML = '';
+
+        // Wrap each word and its letters in spans
+        words.forEach(function(word) {
+            var wordSpan = document.createElement('span');
+            wordSpan.classList.add('word');
+            wordSpan.innerHTML = word.replace(/\S/g, "<span class='letter'>$&</span>");
+            textWrapper.appendChild(wordSpan);
+            textWrapper.appendChild(document.createTextNode(' ')); // Add space between words
+        });
+
+        var animation = anime.timeline({loop: true})
+            .add({
+                targets: '.ml13 .letter',
+                translateY: [40,0],
+                translateZ: 0,
+                opacity: [0,1],
+                filter: ['blur(5px)', 'blur(0px)'], // Starting from blurred to unblurred
+                easing: "easeOutExpo",
+                duration: 1400,
+                delay: (el, i) => 300 + 30 * i,
+            }).add({
+                targets: '.ml13 .letter',
+                translateY: [0,-40],
+                opacity: [1,0],
+                filter: ['blur(0px)', 'blur(5px)'], // Ending from unblurred to blurred
+                easing: "easeInExpo",
+                duration: 1200,
+                delay: (el, i) => 100 + 30 * i,
+                complete: function() {
+                    hidePreloader(); // Call hidePreloader after the animation completes
+                }
+            });
+
+        let themeStatus = JSON.parse(localStorage.getItem('REDEFINE-THEME-STATUS'))?.isDark;
+
+        // If the theme status is not found in local storage, check the preferred color scheme
+        if (themeStatus === undefined || themeStatus === null) {
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                themeStatus = 'dark';
+            } else {
+                themeStatus = 'light';
+            }
+        }
+
+        // Now you can use the themeStatus variable in your code
+        if (themeStatus) {
+            document.documentElement.style.setProperty('--preloader-background-color', '#202124');
+            document.documentElement.style.setProperty('--preloader-text-color', '#fff');
+        } else {
+            document.documentElement.style.setProperty('--preloader-background-color', '#fff');
+            document.documentElement.style.setProperty('--preloader-text-color', '#000');
+        }
+
+        window.addEventListener('load', function () {
+            setTimeout(hidePreloader, 5000); // Call hidePreloader after 5000 milliseconds if not already called by animation
+        });
+
+        function hidePreloader() {
+            var preloader = document.querySelector('.preloader');
+            preloader.style.opacity = '0';
+            setTimeout(function () {
+                preloader.style.display = 'none';
+            }, 200);
+        }
+    </script>
+</div>
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container px-6 md:px-12">
+
+    <div class="navbar-content ">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                
+                Dune
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            
+
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class=""
+                                   href="/"
+                                        >
+                                    <i class="fa-regular fa-house fa-fw"></i>
+                                    HOME
+                                    
+                                </a>
+
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile sheet -->
+    <div class="navbar-drawer h-screen w-full absolute top-0 left-0 bg-background-color flex flex-col justify-between">
+        <ul class="drawer-navbar-list flex flex-col px-4 justify-center items-start">
+            
+                
+                    
+
+                    <li class="drawer-navbar-item text-base my-1.5 flex flex-col w-full">
+                        
+                        <a class="py-1.5 px-2 flex flex-row items-center justify-between gap-1 hover:!text-primary active:!text-primary text-2xl font-semibold group border-b border-border-color hover:border-primary w-full "
+                           href="/"
+                        >
+                            <span>
+                                HOME
+                            </span>
+                            
+                                <i class="fa-regular fa-house fa-sm fa-fw"></i>
+                            
+                        </a>
+                        
+
+                        
+                    </li>
+            
+
+            
+            
+        </ul>
+
+        <div class="statistics flex justify-around my-2.5">
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/tags">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">1</div>
+        <div class="label text-third-text-color text-sm">Tags</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/categories">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">0</div>
+        <div class="label text-third-text-color text-sm">Categories</div>
+    </a>
+    <a class="item tag-count-item flex flex-col justify-center items-center w-20" href="/archives">
+        <div class="number text-2xl sm:text-xl text-second-text-color font-semibold">11</div>
+        <div class="label text-third-text-color text-sm">Posts</div>
+    </a>
+</div>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container flex relative justify-between box-border w-full h-full">
+    <div class="article-content-container">
+
+        <div class="article-title relative w-full">
+            
+                <div class="w-full flex items-center pt-6 justify-start">
+                    <h1 class="article-title-regular text-second-text-color tracking-tight text-4xl md:text-6xl font-semibold px-2 sm:px-6 md:px-8 py-3">指针与内存管理</h1>
+                </div>
+            
+            </div>
+
+        
+            <div class="article-header flex flex-row gap-2 items-center px-2 sm:px-6 md:px-8">
+                <div class="avatar w-[46px] h-[46px] flex-shrink-0 rounded-medium border border-border-color p-[1px]">
+                    <img src="/images/R-C.jpg">
+                </div>
+                <div class="info flex flex-col justify-between">
+                    <div class="author flex items-center">
+                        <span class="name text-default-text-color text-lg font-semibold">Atreides</span>
+                        
+                            <span class="author-label ml-1.5 text-xs px-2 py-0.5 rounded-small text-third-text-color border border-shadow-color-1">Lv2</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2024-07-18</span>
+        <span class="mobile">2024-07-18</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2024-10-01 15:58:51</span>
+            <span class="mobile">2024-10-01 15:58:51</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa-regular fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/C/">C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body px-2 sm:px-6 md:px-8 pb-8">
+            <h1 id="指针-Pointer"><a href="#指针-Pointer" class="headerlink" title="指针(Pointer)"></a>指针(Pointer)</h1><blockquote>
+<p>指针就是一个存储地址的特殊变量。</p>
+</blockquote>
+<p>主要了解两个操作符：<code>&amp;</code>，对对象取地址，与之对应的是<code>*</code>，从地址中取内容。举个例子</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">5</span>;</span><br><span class="line">    <span class="type">int</span> * p1 = <span class="literal">NULL</span>;</span><br><span class="line">    <span class="type">int</span> * p2 = <span class="number">0</span>;</span><br><span class="line">    p1 = &amp;x;</span><br><span class="line">    p2 = &amp;x;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;address of x = &quot;</span> &lt;&lt; p1 &lt;&lt; endl;</span><br><span class="line">    *p1 = <span class="number">10</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;x = &quot;</span> &lt;&lt; x &lt;&lt; endl;</span><br><span class="line">    *p2 = <span class="number">20</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;x = &quot;</span> &lt;&lt; x &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>首先我们声明了一个int变量x，它的值初始化为5，存在内存空间的一块地址中。然后我们定义了两个指针变量，注意要在前面加上<code>*</code>，不然会识别成普通的int类型。如果对指针不进行初始化，会分配一个随机地址，这是很危险的，一般初始化为空值NULL或0，二者是等价的（想一下字符串的终止符）。接下来我们取x的地址，将其赋给指针p1和p2，两个指针就同时指向了x的第一个字节的地址，由于这是一个int类型的指针，就会自动读取四个字节，使用<code>*</code>对其取内容，就会得到x的值。</p>
+<p>这段代码的运行结果为</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">address of x = 0x7fff70f2b064</span><br><span class="line">x = 10</span><br><span class="line">x = 20</span><br></pre></td></tr></table></figure></div>
+
+<p>也可以看出我们是可以通过指针对原变量进行修改的。以上就是指针的定义及基本使用方式，下面介绍指针的更多内容。</p>
+<h2 id="结构体的指针"><a href="#结构体的指针" class="headerlink" title="结构体的指针"></a>结构体的指针</h2><p>我们同样可以对结构体使用指针，指针会存储结构体的首地址，并根据内存顺序读取相应的对象。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">4</span>];</span><br><span class="line">    <span class="type">int</span> born;</span><br><span class="line">    <span class="type">bool</span> isMale;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Student s1 =&#123;<span class="string">&quot;MST&quot;</span>, <span class="number">2000</span>, <span class="literal">true</span>&#125;;</span><br><span class="line">    Student* p = &amp;s1;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Name: &quot;</span> &lt;&lt; p-&gt;name &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Born: &quot;</span> &lt;&lt; p-&gt;born &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Is Male: &quot;</span> &lt;&lt; p-&gt;isMale &lt;&lt; std::endl;</span><br><span class="line">    <span class="built_in">strcpy</span>((*p).name, <span class="string">&quot;Mark&quot;</span>);</span><br><span class="line">    (*p).isMale = <span class="literal">false</span>;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Name: &quot;</span> &lt;&lt; p-&gt;name &lt;&lt; std::endl;</span><br><span class="line">    std::cout &lt;&lt; <span class="string">&quot;Is Male: &quot;</span> &lt;&lt; p-&gt;isMale &lt;&lt; std::endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子中，我们首先定义了一个结构体，然后初始化了一个Student结构体记为s1，接着定义一个Student类型的指针p，p存放了s1的首地址。因为指针类型是Student，所以它就会按照这个结构体的内存分布方式去索引其中的对象，详情参考上一篇文章对结构体的介绍。然后使用结构体的指针索引内容的方式有两种，一种是<code>p→name</code>，一种是<code>(*p).name</code>，从下面的输出可以看出，两种方式都能直接修改内存地址上存储的内容。</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Name: MST</span><br><span class="line">Born: 2000</span><br><span class="line">Is Male: 1</span><br><span class="line">Name: Mark</span><br><span class="line">Is Male: 0</span><br></pre></td></tr></table></figure></div>
+
+<h2 id="指针的指针"><a href="#指针的指针" class="headerlink" title="指针的指针"></a>指针的指针</h2><p>指针作为变量，在内存空间占据一片区域，指针的指针就是指向这个指针内存地址的变量</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> x = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> *p = &amp;x;</span><br><span class="line">    <span class="type">int</span> **q = &amp;p;</span><br><span class="line">    *(*q) = <span class="number">20</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;x = &quot;</span> &lt;&lt; x &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子里，p是x的指针，存放了x的地址，我们定义了指针p的指针q，存放了p的地址。如果想通过q来读写x的值，首先取一次内容，得到p的地址，然后对这个地址再取内容，就得到了x.</p>
+<h2 id="指针常量与常量指针"><a href="#指针常量与常量指针" class="headerlink" title="指针常量与常量指针"></a>指针常量与常量指针</h2><p>指针常量，也就是指针是常量，指向的地址是常量，所以不能更改地址，但是可以通过地址去修改内容。常量指针，也就是常量的指针，是一个常量的指针，所以不能通过指针去改变内容。常量指针常量，就是地址和指针都是常量，都不能去修改。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> b = <span class="number">15</span>;</span><br><span class="line">    <span class="type">int</span> * <span class="type">const</span> p = &amp;a;<span class="comment">//指针常量，地址是一个常量，不能修改指向的地址</span></span><br><span class="line">    *p = <span class="number">20</span>;<span class="comment">//但是可以修改指针指向的值</span></span><br><span class="line">    cout &lt;&lt; a &lt;&lt; endl;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> * q = &amp;a;<span class="comment">//常量指针，也就是常量的指针，不能通过指针去修改内容了</span></span><br><span class="line">    q = &amp;b;<span class="comment">//但是可以修改指针指向的地址</span></span><br><span class="line">    cout &lt;&lt; *q &lt;&lt; endl;</span><br><span class="line">    <span class="type">const</span> <span class="type">int</span> * <span class="type">const</span> r = &amp;a;<span class="comment">//常量指针常量，也就是常量的指针常量，不能修改地址和指向的值</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这个例子分别展示了指针常量、常量指针、常量指针常量，在实际使用中，跟前面遇到的常量数据类型一样，也都是防止在参数传递过程中原对象的内容被修改。</p>
+<h2 id="指针与数组"><a href="#指针与数组" class="headerlink" title="指针与数组"></a>指针与数组</h2><p>数组名就是一个指针，但是对数组取地址，并不是指针的指针，还是数组的地址。请看下面的例子</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Student</span> &#123;</span><br><span class="line">    <span class="type">char</span> name[<span class="number">8</span>];</span><br><span class="line">    <span class="type">int</span> born;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Student s[<span class="number">128</span>];</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;students = %p\n&quot;</span>, &amp;s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;students = %p\n&quot;</span>, s);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;&amp;students[0] = %p\n&quot;</span>, &amp;s[<span class="number">0</span>]);</span><br><span class="line">    Student * p = s;</span><br><span class="line">    p[<span class="number">0</span>].born = <span class="number">2000</span>; </span><br><span class="line">    p[<span class="number">1</span>].born = <span class="number">2001</span>;</span><br><span class="line">    p[<span class="number">2</span>].born = <span class="number">2002</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;students[0].born = %d\n&quot;</span>, s[<span class="number">0</span>].born);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;students[1].born = %d\n&quot;</span>, s[<span class="number">1</span>].born);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;students[2].born = %d\n&quot;</span>, s[<span class="number">2</span>].born);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子中，我们直接对s取地址，或者直接打印s，再或者打印s第一个对象的地址，最后的结构应该是一样的。我们定义s的指针p，实际上与数组名s无区别，也可以使用数组的方式去读写其中的数据，程序的输出结果为</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&amp;students = 0x7ffff0318270</span><br><span class="line">students = 0x7ffff0318270</span><br><span class="line">&amp;students[0] = 0x7ffff0318270</span><br><span class="line">students[0].born = 2000</span><br><span class="line">students[1].born = 2001</span><br><span class="line">students[2].born = 2002</span><br></pre></td></tr></table></figure></div>
+
+<p>实际上，在C&#x2F;C++中，正确的理解方式就是数组是一块连续内存空间，数组名就是其首地址。这个说法并不好理解，接下来详细说明。</p>
+<p>如果我们定义一个int类型的数组arr，直接使用<code>cout&lt;&lt;arr</code>，输出的内容并不是arr数组的内容，而是一个内存地址。这与我们的前面的理解是一样的，但奇怪的是，如果我们定义一个char类型的数组str，使用<code>cout&lt;&lt;str</code>输出的却是数组的内容。这是因为C++中<code>&lt;&lt;</code>操作符实现了函数重载，这在后续部分会在详细讲解。简言之就是各种操作符本质都是函数，既然是函数就可以在C++中进行重载，重载的结果是同样的函数名（也就是同样的操作符），遇到不同的参数对象，就会执行不同的操作。因此，如果<code>&lt;&lt;</code>检测到输出的是一个字符数组（或指向字符的指针），它会输出字符数组的内容，而不是地址。</p>
+<p>相信看到这里，你已经完全相信数组名就是一个指针，指向一块连续内存的首地址。那么问题又来了，我们可以通过str[1]的方式去索引数组的内容，str既然是地址，又怎么能进行索引呢？这个问题就需要用指针的代数操作来解答。</p>
+<h2 id="指针的代数操作"><a href="#指针的代数操作" class="headerlink" title="指针的代数操作"></a>指针的代数操作</h2><p>指针是一个地址，我们可以对其进行偏移，根据指针的数据类型，会偏移不同的长度。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> PRINT_ARRAY(array,n)\</span></span><br><span class="line"><span class="meta">for (int inx=0; inx&lt;(n); inx++)\</span></span><br><span class="line"><span class="meta">    cout &lt;&lt; <span class="string">&quot;array[&quot;</span> &lt;&lt; inx &lt;&lt; <span class="string">&quot;] = &quot;</span> &lt;&lt; (array)[inx] &lt;&lt; endl;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> a[<span class="number">5</span>] = &#123;<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;</span><br><span class="line">    <span class="built_in">PRINT_ARRAY</span>(a, <span class="number">5</span>)</span><br><span class="line">    <span class="type">int</span> *p = a + <span class="number">1</span>;</span><br><span class="line">    p++;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;p = &quot;</span> &lt;&lt; p &lt;&lt; endl;</span><br><span class="line">    *p = <span class="number">20</span>;</span><br><span class="line">    *(p<span class="number">-1</span>) = <span class="number">10</span>;</span><br><span class="line">    p[<span class="number">1</span>] = <span class="number">30</span>;</span><br><span class="line">    <span class="built_in">PRINT_ARRAY</span>(a, <span class="number">5</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>在这个例子中，我们首先定义了一个宏，其实作用与函数比较类似，但区别在于宏是在编译前由预处理器。宏的定义是使用<code>#define</code>，并且所有命令在一行输入，可以使用\转义符在多行输入。并且我们把n和array都加上了括号，这是因为宏是在文本层面将PRINT_ARRAY替换成后续语句，这就避免了如果n和array是表达式，引起的操作符顺序冲突，同时在使用这个宏时也不用加分号。</p>
+<p>最终的输出结果为</p>
+<div class="highlight-container" data-rel="Bash"><figure class="iseeu highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">array[0] = 0</span><br><span class="line">array[1] = 1</span><br><span class="line">array[2] = 2</span><br><span class="line">array[3] = 3</span><br><span class="line">array[4] = 4</span><br><span class="line">p = 0x7fffe639fcf8</span><br><span class="line">array[0] = 0</span><br><span class="line">array[1] = 10</span><br><span class="line">array[2] = 20</span><br><span class="line">array[3] = 30</span><br><span class="line">array[4] = 4</span><br></pre></td></tr></table></figure></div>
+
+<p>一开始我们定义指针p的指向为a+1，其实就是array[1]的地址；然后p-1的地址其实就是向前偏移一个int的地址，即array[0]；对于p[1]的解释，也刚好回答上一部分的疑问，p[1]其实就是*(p+1)，将p的指针向后偏移一个int的长度，就得到了数组中第二个元素。所以说，数组名就是首地址，相信到这里应该就对这个说法没有疑问了。</p>
+<h1 id="动态内存管理"><a href="#动态内存管理" class="headerlink" title="动态内存管理"></a>动态内存管理</h1><p>首先介绍一下程序内存，主要由以下部分组成。</p>
+<ol>
+<li><strong>代码段（Code Segment）</strong>：<ul>
+<li>这是存储程序的可执行代码的内存区域。在许多操作系统中，代码段通常被设置为只读，以防止程序在运行时被意外修改。</li>
+</ul>
+</li>
+<li><strong>数据段（Data Segment）</strong>：<ul>
+<li>数据段用于存储程序的全局变量和静态变量。这些变量的生命周期与程序相同，并且在程序的整个运行期间保持其值。</li>
+</ul>
+</li>
+<li><strong>堆（Heap）</strong>：<ul>
+<li>堆是用于动态内存分配的内存区域。程序可以使用<code>malloc</code>、<code>new</code>等函数在堆上分配内存，并使用<code>free</code>、<code>delete</code>等函数来释放内存。堆的大小在程序运行时可以动态变化。</li>
+</ul>
+</li>
+<li><strong>栈（Stack）</strong>：<ul>
+<li>栈用于存储局部变量和函数调用的上下文信息。每个函数调用都会在栈上创建一个新的栈帧，包含局部变量、参数和返回地址。栈是后进先出（LIFO）的数据结构。</li>
+</ul>
+</li>
+<li><strong>静态内存（Static Memory）</strong>：<ul>
+<li>静态内存指的是在编译时分配的内存，其大小是固定的。这包括静态变量和全局变量，它们在程序的整个生命周期内都存在。</li>
+</ul>
+</li>
+<li><strong>动态内存（Dynamic Memory）</strong>：<ul>
+<li>与静态内存相对，动态内存是在程序运行时根据需要分配和释放的。这允许程序更灵活地使用内存资源，但也要求程序员手动管理内存的分配和释放。</li>
+</ul>
+</li>
+</ol>
+<p>一般来讲，堆和栈是相向而行的，也就是二者从各自的初始位置开始，向中间汇合，当然也不绝对，这取决于具体的操作系统。我们讨论内存管理，其实就是在堆上申请和释放内存，下面用一个具体的例子来介绍。</p>
+<div class="highlight-container" data-rel="Cpp"><figure class="iseeu highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用new来申请内存</span></span><br><span class="line">    <span class="type">int</span> *p1 = <span class="keyword">new</span> <span class="type">int</span>;<span class="comment">//分配一个int型的内存空间，不初始化</span></span><br><span class="line">    <span class="type">int</span> *p2 = <span class="keyword">new</span> <span class="built_in">int</span>();<span class="comment">//分配一个int型的内存空间，初始化为0</span></span><br><span class="line">    <span class="type">int</span> *p3 = <span class="keyword">new</span> <span class="built_in">int</span>(<span class="number">10</span>);<span class="comment">//分配一个int型的内存空间，初始化为10</span></span><br><span class="line">    <span class="type">int</span> *p4 = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>];<span class="comment">//分配一个int型的数组，大小为10，每个元素初始化为0</span></span><br><span class="line">    <span class="type">int</span> *p5 = <span class="keyword">new</span> <span class="type">int</span>[<span class="number">10</span>] &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;<span class="comment">//分配一个int型的数组，大小为10，未初始化部分为0</span></span><br><span class="line">    <span class="type">int</span> *p6 = <span class="keyword">new</span> <span class="type">int</span>&#123;&#125;;<span class="comment">//分配一个int型的内存空间，初始化为0</span></span><br><span class="line">    <span class="type">int</span> *p7 = <span class="keyword">new</span> <span class="type">int</span>&#123;<span class="number">10</span>&#125;;<span class="comment">//分配一个int型的内存空间，初始化为10</span></span><br><span class="line">    Student *ps1 = <span class="keyword">new</span> Student;<span class="comment">//分配一个Student型的内存空间，不初始化</span></span><br><span class="line">    Student *ps2 = <span class="keyword">new</span> Student&#123;<span class="number">10</span>,<span class="string">&quot;MST&quot;</span>&#125;;<span class="comment">//分配一个Student型的内存空间，初始化为&#123;10,&quot;MST&quot;&#125;</span></span><br><span class="line">    Student *ps3 = <span class="keyword">new</span> Student[<span class="number">10</span>];<span class="comment">//分配一个Student型的数组，大小为10，每个元素初始化为0</span></span><br><span class="line">    Student *ps4 = <span class="keyword">new</span> Student[<span class="number">10</span>] &#123;&#123;<span class="number">10</span>,<span class="string">&quot;MST&quot;</span>&#125;&#125;;<span class="comment">//分配一个Student型的数组，大小为10，第一个元素初始化为&#123;&quot;MST&quot;,10&#125;</span></span><br><span class="line">    <span class="comment">//用delete来释放内存</span></span><br><span class="line">    <span class="keyword">delete</span> p1;</span><br><span class="line">    <span class="keyword">delete</span> p2;</span><br><span class="line">    <span class="keyword">delete</span> p3;</span><br><span class="line">    <span class="keyword">delete</span>[] p4;<span class="comment">//前面加上[]表示是数组，用delete[]来释放内存</span></span><br><span class="line">    <span class="keyword">delete</span>[] p5;</span><br><span class="line">    <span class="keyword">delete</span> p6;</span><br><span class="line">    <span class="keyword">delete</span> p7;</span><br><span class="line">    <span class="keyword">delete</span> ps1;</span><br><span class="line">    <span class="keyword">delete</span> ps2;</span><br><span class="line">    <span class="keyword">delete</span>[] ps3;</span><br><span class="line">    <span class="keyword">delete</span>[] ps4;</span><br></pre></td></tr></table></figure></div>
+
+<p>看起来非常的复杂，但其实只要记住以下几点：在使用new方法分配内存时，最好使用花括号进行初始化；在使用delete方法释放内存时，对于数组&#x2F;类&#x2F;结构体的对象，要在变量前面加上中括号，这一方面是因为这样会调用类中每一个元素的析构函数，另一方面是为了与之前new[]对应。</p>
+<p>我们进行内存管理，主要是为了避免内存泄漏，比如我们为变量p申请了一块内存空间1，又为p申请了另一块内存空间2，那么原来的内存空间就“丢失”了，无法释放掉（当然程序结束后操作系统会将其释放）。又或者我们在一个函数中申请了一块内存空间，但是没有释放就返回了，那么这也会造成内存泄漏。</p>
+<h1 id="总结归纳"><a href="#总结归纳" class="headerlink" title="总结归纳"></a>总结归纳</h1><p>这篇文章主要就是指针与简单的内存管理，理解了指针其实是存储地址的变量就抓住了问题的关键，内存管理部分介绍了C++中在堆上申请和释放内存的方法，并且提醒避免在项目中发生内存泄漏。</p>
+
+        </div>
+
+        
+            <div class="post-copyright-info w-full my-8 px-2 sm:px-6 md:px-8">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> 指针与内存管理</li>
+        <li><strong>Author:</strong> Atreides</li>
+        <li><strong>Created at
+                :</strong> 2024-07-18 00:00:00</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2024-10-01 15:58:51
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://mst0506.github.io/2024/07/18/指针与内存管理/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+
+            
+                This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0">CC BY-NC-SA 4.0</a>.
+            
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+            <ul class="post-tags-box text-lg mt-1.5 flex-wrap justify-center flex md:hidden">
+                
+                    <li class="tag-item mx-0.5">
+                        <a href="/tags/C/">#C++</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+
+        
+            <div class="article-nav my-8 flex justify-between items-center px-2 sm:px-6 md:px-8">
+                
+                    <div class="article-prev border-border-color shadow-redefine-flat shadow-shadow-color-2 rounded-medium px-4 py-2 hover:shadow-redefine-flat-hover hover:shadow-shadow-color-2">
+                        <a class="prev"
+                        rel="prev"
+                        href="/2024/07/19/%E6%95%B0%E7%BB%84%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8E%E7%BB%93%E6%9E%84%E4%BD%93/"
+                        >
+                            <span class="left arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">常用Linux命令</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+            </div>
+        
+
+
+        
+            <div class="comment-container px-2 sm:px-6 md:px-8 pb-8">
+                <div class="comments-container mt-10 w-full ">
+    <div id="comment-anchor" class="w-full h-2.5"></div>
+    <div class="comment-area-title w-full my-1.5 md:my-2.5 text-xl md:text-3xl font-bold">
+        Comments
+    </div>
+    
+
+        
+            
+    <div id="waline"></div>
+    <script type="module" data-swup-reload-script>
+      import { init } from '/js/libs/waline.mjs';
+
+      function loadWaline() {
+        init({
+          el: '#waline',
+          serverURL: 'https://example.example.com',
+          lang: 'zh-CN',
+          dark: 'body[class~="dark-mode"]',
+          reaction: false,
+          requiredMeta: ['nick', 'mail'],
+          emoji: [],
+          recaptchaV3Key: "wasd",
+          
+        });
+      }
+
+      if (typeof swup !== 'undefined') {
+        loadWaline();
+      } else {
+        window.addEventListener('DOMContentLoaded', loadWaline);
+      }
+    </script>
+
+
+
+        
+    
+</div>
+
+            </div>
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">指针与内存管理</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%87%E9%92%88-Pointer"><span class="nav-text">指针(Pointer)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E4%BD%93%E7%9A%84%E6%8C%87%E9%92%88"><span class="nav-text">结构体的指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E6%8C%87%E9%92%88"><span class="nav-text">指针的指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E5%B8%B8%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F%E6%8C%87%E9%92%88"><span class="nav-text">指针常量与常量指针</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E4%B8%8E%E6%95%B0%E7%BB%84"><span class="nav-text">指针与数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8C%87%E9%92%88%E7%9A%84%E4%BB%A3%E6%95%B0%E6%93%8D%E4%BD%9C"><span class="nav-text">指针的代数操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-text">动态内存管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E5%BD%92%E7%BA%B3"><span class="nav-text">总结归纳</span></a></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2024&nbsp;&nbsp;<i class="fa-solid fa-heart fa-beat" style="--fa-animation-duration: 0.5s; color: #f54545"></i>&nbsp;&nbsp;<a href="/">Atreides</a>
+            
+                
+                <p class="post-count space-x-0.5">
+                    <span>
+                        11 posts in total
+                    </span>
+                    
+                </p>
+            
+        </div>
+        
+            <script data-swup-reload-script src="https://cn.vercount.one/js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.6.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+            <li class="go-comment">
+                <i class="fa-regular fa-comments"></i>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script src="/js/libs/SwupPreloadPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+            new SwupPreloadPlugin(),
+        ],
+        containers: ["#swup"],
+    });
+</script>
+
+
+
+
+
+
+
+<script src="/js/tools/imageViewer.js" type="module"></script>
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js" type="module"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
